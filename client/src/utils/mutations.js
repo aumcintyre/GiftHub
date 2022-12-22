@@ -38,7 +38,7 @@ mutation loginUser(
 `;
 
 export const ADD_EXCHANGE = gql`
-    mutation AddExchange(
+    mutation addExchange(
         $roomName: String!
         $passphrase: String!
         ) {

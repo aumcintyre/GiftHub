@@ -18,6 +18,7 @@ import LoginForm from "./Components/LoginForm";
 import Navbar from './Components/Navbar';
 import CreateWishlist from './Components/CreateWishlist';
 import CreateExchange from './Components/CreateExchange';
+import ExchangeCalendar from './Components/Calender';
 
 
 
@@ -53,8 +54,9 @@ function App() {
       <SignupForm />
       <CreateWishlist/>
       <CreateExchange />
+      <ExchangeCalendar />
       <LoginForm />
-      {/* <LoginForm /> */}
+      
     </ApolloProvider>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 
-function MyApp() {
+function ExchangeCalendar() {
   const [value, onChange] = useState(new Date());
 
   return (
@@ -17,3 +17,5 @@ function MyApp() {
     </div>
   );
 }
+
+export default ExchangeCalendar;

@@ -39,7 +39,8 @@ const SignupForm = () => {
                 variables: { ...userFormData }
             });
             console.log('data::::', data)
-            console.log("TOKEN IS BREAKING IT");
+            // console.log("TOKEN IS BREAKING IT");
+            console.log("Token::::", data.addUser.token)
 
             // const token = mutationResponse.data.addUser.token;
             // Auth.login(token);
