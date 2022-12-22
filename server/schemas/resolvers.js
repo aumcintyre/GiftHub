@@ -1,31 +1,23 @@
 const { User, Wish, Exchange } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
         users: async () => {
-            return await User.find();
+            return await User.find({});
         },
-        user: async (parents, args, context) => {
-            if (context.user) {
-                const user = await User.findById(context.user._id).populate({
-                    path: '',
-                    populate: 'exchanges'
-                });
-
-                return user;
-            } else {
-                // ?????
-            }
+        user: async (parent, args) => {
+            const user = await User.findById(args.id);
+            return user;
         },
-        wishes: async () => {
-            return await Wish.find();
-        },
+        exchanges: async () => {
+            return await Exchange.find({});
+        }
     },
-
     Mutation: {
-        login: async (parent, { email, password }) => {
-            const user = await User.findOne({ email });
+        loginUser: async (parent, { username, password }) => {
+            const user = await User.findOne({ username });
 
             if (!user) {
                 throw new AuthenticationError('Invalid user name')
@@ -43,7 +35,6 @@ const resolvers = {
             return { token, user };
 
         },
-
         addUser: async (parent, args) => {
             try {
 
@@ -54,11 +45,19 @@ const resolvers = {
             }
             catch (err) {
                 console.error(err);
-
             }
         },
+        addExchange: async (parent, args) => {
+            try {
+                const exchange = await Exchange.create(args);
+                return { exchange };
+                
+            } catch (err) {
+                console.error(err); 
+            }
+        }
     }
-}
+};
 
 
 module.exports = resolvers;

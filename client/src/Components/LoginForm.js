@@ -1,92 +1,104 @@
-// // see SignupForm.js for comments
-// import React, { useState } from 'react';
-// import { Form, Button, Alert } from 'react-bootstrap';
+// see SignupForm.js for comments
+import React, { useState } from 'react';
+import { Form, Button, Alert } from 'react-bootstrap';
+import { useMutation } from "@apollo/client";
+import Auth from '../utils/auth';
+import { LOGIN_USER } from '../utils/mutations';
 
-// import { loginUser } from '../utils/API';
-// import Auth from '../utils/auth';
 
-// const LoginForm = () => {
-//     const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-//     const [validated] = useState(false);
-//     const [showAlert, setShowAlert] = useState(false);
+const LoginForm = () => {
+    const [userFormData, setUserFormData] = useState({ username: '', password: '' });
+    const [validated] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
 
-//     const handleInputChange = (event) => {
-//         const { name, value } = event.target;
-//         setUserFormData({ ...userFormData, [name]: value });
-//     };
+    const [loginUser, { error }] = useMutation(LOGIN_USER);
 
-//     const handleFormSubmit = async (event) => {
-//         event.preventDefault();
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setUserFormData({ ...userFormData, [name]: value });
+    };
 
-//         // check if form has everything (as per react-bootstrap docs)
-//         const form = event.currentTarget;
-//         if (form.checkValidity() === false) {
-//             event.preventDefault();
-//             event.stopPropagation();
-//         }
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
 
-//         try {
-//             const response = await loginUser(userFormData);
+        // check if form has everything (as per react-bootstrap docs)
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
 
-//             if (!response.ok) {
-//                 throw new Error('something went wrong!');
-//             }
+        try {
+            const response = await loginUser({
+                variables: {...userFormData}});
 
-//             const { token, user } = await response.json();
-//             console.log(user);
-//             Auth.login(token);
-//         } catch (err) {
-//             console.error(err);
-//             setShowAlert(true);
-//         }
+            // if (!response.ok) {
+            //     console.log(response)
+            //     throw new Error('something went wrong!');
+                
+            // }
 
-//         setUserFormData({
-//             username: '',
-//             email: '',
-//             password: '',
-//         });
-//     };
+            const { token, user } = response;
+            console.log(user);
+            Auth.login(token);
+        } catch (err) {
+            console.error(err);
+            setShowAlert(true);
+        }
 
-//     return (
-//         <>
-//             <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-//                 <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-//                     Something went wrong with your login credentials!
-//                 </Alert>
-//                 <Form.Group>
-//                     <Form.Label htmlFor='email'>Email</Form.Label>
-//                     <Form.Control
-//                         type='text'
-//                         placeholder='Your email'
-//                         name='email'
-//                         onChange={handleInputChange}
-//                         value={userFormData.email}
-//                         required
-//                     />
-//                     <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
-//                 </Form.Group>
+        setUserFormData({
+            username: '',
+            // email: '',
+            password: '',
+        });
+    };
 
-//                 <Form.Group>
-//                     <Form.Label htmlFor='password'>Password</Form.Label>
-//                     <Form.Control
-//                         type='password'
-//                         placeholder='Your password'
-//                         name='password'
-//                         onChange={handleInputChange}
-//                         value={userFormData.password}
-//                         required
-//                     />
-//                     <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
-//                 </Form.Group>
-//                 <Button
-//                     disabled={!(userFormData.email && userFormData.password)}
-//                     type='submit'
-//                     variant='success'>
-//                     Submit
-//                 </Button>
-//             </Form>
-//         </>
-//     );
-// };
+    return (
+        <>
+            <div className='login-form'>
+                {/* This is needed for the validation functionality above */}
+                <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+                        {/* show alert if server response is bad */}
+                        {/* <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                            Something went wrong with your signup!
+                        </Alert> */}
+                        <h1> Login </h1>
+                        <Form.Group>
+                            <Form.Label htmlFor='username'>Username</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder='Your username'
+                                name='username'
+                                onChange={handleInputChange}
+                                value={userFormData.username}
+                                required
+                            />
+                            <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
+                        </Form.Group>
 
-// export default LoginForm;
+                    
+                        <Form.Group>
+                            <Form.Label htmlFor='password'>Password</Form.Label>
+                            <Form.Control
+                                type='password'
+                                placeholder='Your password'
+                                name='password'
+                                onChange={handleInputChange}
+                                value={userFormData.password}
+                                required
+                            />
+                            <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
+                        </Form.Group>
+                        <Button
+                            disabled={!(userFormData.username && userFormData.password)}
+                            type='submit'
+                            variant='success'>
+                            Login
+                        </Button>
+                    </Form>
+                </div>
+        </>
+    );
+};
+
+export default LoginForm;

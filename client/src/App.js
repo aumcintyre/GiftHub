@@ -14,6 +14,13 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import SignupForm from './Components/SignupForm';
+import LoginForm from "./Components/LoginForm";
+import Navbar from './Components/Navbar';
+import CreateWishlist from './Components/CreateWishlist';
+import CreateExchange from './Components/CreateExchange';
+
+
+
 
 
 const httpLink = createHttpLink({
@@ -42,7 +49,12 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
+      <Navbar />
       <SignupForm />
+      <CreateWishlist/>
+      <CreateExchange />
+      <LoginForm />
+      {/* <LoginForm /> */}
     </ApolloProvider>
   );
 }

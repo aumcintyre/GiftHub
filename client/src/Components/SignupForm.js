@@ -4,10 +4,6 @@ import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 
-// import { Form } from 'react-bootstrap/Form';
-// import { Button } from 'react-bootstrap/Button';
-// import { Alert } from 'react-bootstrap/Alert';
-
 
 //NEED TO IMPORT QUERIES AND MUTATIONS HERE
 
@@ -37,12 +33,16 @@ const SignupForm = () => {
         }
 
         try {
-
+            console.log("TRYING!!!!!");
+            // const { data } = await addUser({
             const { data } = await addUser({
                 variables: { ...userFormData }
             });
+            console.log('data::::', data)
+            console.log("TOKEN IS BREAKING IT");
 
-            console.log("TOKEN IS BREAKING IT")
+            // const token = mutationResponse.data.addUser.token;
+            // Auth.login(token);
             Auth.login(data.addUser.token);
 
             console.log("GOT TOKEN")
@@ -62,60 +62,71 @@ const SignupForm = () => {
 
     return (
         <>
-            {/* This is needed for the validation functionality above */}
-            <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-                {/* show alert if server response is bad */}
-                <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-                    Something went wrong with your signup!
-                </Alert>
+            <div className="landing-page">
+            
+                <div className="signup-form">
+                    {/* This is needed for the validation functionality above */}
+                    <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+                        {/* show alert if server response is bad */}
+                        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                            Something went wrong with your signup!
+                        </Alert>
+                        <h1> Sign Up </h1>
+                        <Form.Group>
+                            <Form.Label htmlFor='username'>Username</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder='Your username'
+                                name='username'
+                                onChange={handleInputChange}
+                                value={userFormData.username}
+                                required
+                            />
+                            <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
+                        </Form.Group>
 
-                <Form.Group>
-                    <Form.Label htmlFor='username'>Username</Form.Label>
-                    <Form.Control
-                        type='text'
-                        placeholder='Your username'
-                        name='username'
-                        onChange={handleInputChange}
-                        value={userFormData.username}
-                        required
-                    />
-                    <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
-                </Form.Group>
+                        <Form.Group>
+                            <Form.Label htmlFor='email'>Email</Form.Label>
+                            <Form.Control
+                                type='email'
+                                placeholder='Your email address'
+                                name='email'
+                                onChange={handleInputChange}
+                                value={userFormData.email}
+                                required
+                            />
+                            <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
+                        </Form.Group>
 
-                <Form.Group>
-                    <Form.Label htmlFor='email'>Email</Form.Label>
-                    <Form.Control
-                        type='email'
-                        placeholder='Your email address'
-                        name='email'
-                        onChange={handleInputChange}
-                        value={userFormData.email}
-                        required
-                    />
-                    <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
-                </Form.Group>
+                        <Form.Group>
+                            <Form.Label htmlFor='password'>Password</Form.Label>
+                            <Form.Control
+                                type='password'
+                                placeholder='Your password'
+                                name='password'
+                                onChange={handleInputChange}
+                                value={userFormData.password}
+                                required
+                            />
+                            <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
+                        </Form.Group>
+                        <Button
+                            disabled={!(userFormData.username && userFormData.email && userFormData.password)}
+                            type='submit'
+                            variant='success'>
+                            Sign up
+                        </Button>
+                    </Form>
+                </div>
+              
+                
+            
 
-                <Form.Group>
-                    <Form.Label htmlFor='password'>Password</Form.Label>
-                    <Form.Control
-                        type='password'
-                        placeholder='Your password'
-                        name='password'
-                        onChange={handleInputChange}
-                        value={userFormData.password}
-                        required
-                    />
-                    <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
-                </Form.Group>
-                <Button
-                    disabled={!(userFormData.username && userFormData.email && userFormData.password)}
-                    type='submit'
-                    variant='success'>
-                    Submit
-                </Button>
-            </Form>
+                
+            </div>
         </>
     );
+
 };
 
 export default SignupForm;

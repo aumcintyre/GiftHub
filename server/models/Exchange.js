@@ -2,14 +2,14 @@ const { Schema, model } = require('mongoose');
 
 const exchangeSchema = new Schema(
     {
-
         roomName: {
             type: String,
-            required: True,
+            required: true,
         },
 
         passphrase: {
             type: String,
+            required: true,
         },
         // TODO: Can this have a property with a list of all users?
         // I dare say so!!
