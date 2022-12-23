@@ -1,17 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react';
 
-export default function Home() {
+export default function PortfolioContainer() {
+    const [currentPage, setCurrentPage] = useState('Home');
+
+
+    const renderPage = () => {
+        if (currentPage === 'Home') {
+            return <Home resumeInfo={resumeInfo} />;
+        }
+        if (currentPage === 'About') {
+            return <About resumeInfo={resumeInfo} />;
+        }
+        if (currentPage === 'Projects') {
+            return <Projects resumeInfo={resumeInfo} />;
+        }
+        if (currentPage === 'Contact') {
+            return <Contact resumeInfo={resumeInfo} />;
+        }
+        if (currentPage === 'Resume') {
+            return <Resume resumeInfo={resumeInfo} />;
+        }
+    };
+
+    const handlePageChange = (page) => setCurrentPage(page);
+
     return (
         <div>
-            <div className='home-container row'>
-                <div>
-                    <h1 className='home-row col-md-12' style={{ fontSize: '70px' }}>Hi!</h1>
-                    <img src='images/home-logo.png' className='home-logo' />
-                    <p className='home-row container' style={{ padding: '28px', fontSize: '24px' }}>
-                        Welcome to GiftHub
-                    </p>
-                </div>
-            </div>
-        </div >
-    )
+            <Header currentPage={currentPage} handlePageChange={handlePageChange} />
+            {renderPage()}
+            <Footer resumeInfo={resumeInfo} />
+        </div>
+    );
 }
