@@ -35,8 +35,11 @@ const typeDefs = gql
 
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
+        deleteUser(userId: ID!): User
         loginUser(username: String!, password: String!): Auth
         addExchange(roomName: String!, passphrase: String!): Exchange
+        addUserToExchange(exchangeId: ID!, userId: ID!): Exchange
+        clearExchangeTEST(exchangeId: ID!): Exchange
     }
     
     
