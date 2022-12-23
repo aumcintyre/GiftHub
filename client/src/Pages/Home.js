@@ -1,35 +1,17 @@
-// import React from 'react';
-// import Button from 'react-bootstrap/Button';
-// import Form from 'react-bootstrap/Form';
+import React from 'react'
 
-
-// function signUpForm() {
-
-
-
-//     return (
-//         <Form>
-//             <Form.Group className="mb-3" controlId="formBasicEmail">
-//                 <Form.Label>Email address</Form.Label>
-//                 <Form.Control type="email" placeholder="Enter email" />
-//                 <Form.Text className="text-muted">
-//                     We'll never share your email with anyone else.
-//                 </Form.Text>
-//             </Form.Group>
-
-//             <Form.Group className="mb-3" controlId="formBasicPassword">
-//                 <Form.Label>Password</Form.Label>
-//                 <Form.Control type="password" placeholder="Password" />
-//             </Form.Group>
-//             <Form.Group className="mb-3" controlId="formBasicCheckbox">
-//                 <Form.Check type="checkbox" label="Check me out" />
-//             </Form.Group>
-//             <Button variant="primary" type="submit">
-//                 Submit
-//             </Button>
-//         </Form>
-//     );
-// }
-
-// export default signUpForm;
-
+export default function Home() {
+    return (
+        <div>
+            <div className='home-container row'>
+                <div>
+                    <h1 className='home-row col-md-12' style={{ fontSize: '70px' }}>Hi!</h1>
+                    <img src='images/home-logo.png' className='home-logo' />
+                    <p className='home-row container' style={{ padding: '28px', fontSize: '24px' }}>
+                        Welcome to GiftHub
+                    </p>
+                </div>
+            </div>
+        </div >
+    )
+}

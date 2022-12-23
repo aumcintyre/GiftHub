@@ -11,6 +11,7 @@ const typeDefs = gql
 
     type Exchange {
         _id: ID
+        creatorID: ID
         roomName: String
         passphrase: String
         users: [User]
@@ -19,7 +20,8 @@ const typeDefs = gql
         _id: ID
         username: String
         email: String
-        password: String
+        secretSantaId: ID
+        exchange: [Exchange]
     }
 
     type Auth {
@@ -31,6 +33,8 @@ const typeDefs = gql
         user(_id: ID!): User
         users: [User]
         exchanges: [Exchange]
+        exchange: Exchange
+        exchangeByUser: [Exchange]
     }
 
     type Mutation {
@@ -38,8 +42,9 @@ const typeDefs = gql
         deleteUser(userId: ID!): User
         loginUser(username: String!, password: String!): Auth
         addExchange(roomName: String!, passphrase: String!): Exchange
+        deleteExchange(exchangeId: ID!): Exchange
         addUserToExchange(exchangeId: ID!, userId: ID!): Exchange
-        clearExchangeTEST(exchangeId: ID!): Exchange
+        removeFromExchange(exchangeId: ID!, userId: ID!): Exchange
     }
     
     

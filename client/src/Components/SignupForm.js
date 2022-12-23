@@ -3,7 +3,7 @@ import { Form, Button, Alert } from 'react-bootstrap/';
 import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
-
+import Card from 'react-bootstrap/Card';
 
 //NEED TO IMPORT QUERIES AND MUTATIONS HERE
 
@@ -64,7 +64,8 @@ const SignupForm = () => {
     return (
         <>
             <div className="landing-page">
-            
+            <Card style={{ width: '18rem' }}>
+            <Card.Body>
                 <div className="signup-form">
                     {/* This is needed for the validation functionality above */}
                     <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
@@ -123,7 +124,8 @@ const SignupForm = () => {
                 
             
 
-                
+                </Card.Body>
+                </Card>
             </div>
         </>
     );

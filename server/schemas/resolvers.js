@@ -11,8 +11,20 @@ const resolvers = {
             const user = await User.findById(args.id);
             return user;
         },
+
+        // GET all exchanges
         exchanges: async () => {
-            return await Exchange.find({});
+            return await Exchange.find({}).populate('users');
+        },
+        exchange: async (parent, args) => {
+            const exchange = await Exchange.findById(args.id);
+            return exchange;
+        },
+        exchangeByUser: async(parent, args, context) => {
+            const exchanges = await Exchange.find({
+                "users.user._id": context.user._id
+            });
+            return exchanges
         }
     },
     Mutation: {
@@ -54,13 +66,26 @@ const resolvers = {
                 console.error(err)
             }
         },
-        addExchange: async (parent, args) => {
+        addExchange: async (parent, args, context) => {
+            console.log("context: ", context, "user prop:  ", context.user)
             try {
-                const exchange = await Exchange.create(args);
-                return { exchange };
+                const exchange = await Exchange.create({
+                    roomName: args.roomName,
+                    passphrase: args.passphrase,
+                    creatorId: [context.user._id],
+                    users: [context.user._id]
+                });
+                return exchange ;
                 
             } catch (err) {
                 console.error(err); 
+            }
+        },
+        deleteExchange: async(parent, args) => {
+            try {
+                return Exchange.findByIdAndDelete(args.exchangeId)
+            } catch (err) {
+                console.error(err)
             }
         },
         addUserToExchange: async (parent, args) => {
@@ -77,9 +102,9 @@ const resolvers = {
             // exchange.update({}, {$set: {users: [...users, user]}})
             // return exchange;
         },
-        clearExchangeTEST: async(parent, args) => {
+        removeFromExchange: async(parent, args) => {
             try {
-                await Exchange.findOneAndUpdate({id: args.exhangeId}, {users: []}, {new:true})
+                await Exchange.findOneAndUpdate({id: args.exhangeId}, {$pull: {users: {id: args.userId}} }, {new:true})
             } catch (err) {
                 console.error(err)
             }

@@ -14,13 +14,14 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import SignupForm from './Components/SignupForm';
+import PortfolioContainer from './Pages/PortfolioContainer'
 import LoginForm from "./Components/LoginForm";
-import Navbar from './Components/Navbar';
+import Header from './Components/Header';
 import CreateWishlist from './Components/CreateWishlist';
 import CreateExchange from './Components/CreateExchange';
 import ExchangeCalendar from './Components/Calender';
-
-
+import SimpleCard from './Components/Gallery';
+import Exchange from './Components/Exchange';
 
 
 
@@ -50,13 +51,9 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Navbar />
-      <SignupForm />
-      <CreateWishlist/>
-      <CreateExchange />
-      <ExchangeCalendar />
-      <LoginForm />
       
+       <PortfolioContainer />
+       
     </ApolloProvider>
   );
 }

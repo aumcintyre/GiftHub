@@ -4,6 +4,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from "@apollo/client";
 import Auth from '../utils/auth';
 import { LOGIN_USER } from '../utils/mutations';
+import Card from 'react-bootstrap/Card';
 
 
 const LoginForm = () => {
@@ -56,6 +57,8 @@ const LoginForm = () => {
     return (
         <>
             <div className='login-form'>
+            <Card style={{ width: '18rem' }}>
+            <Card.Body>
                 {/* This is needed for the validation functionality above */}
                 <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
                         {/* show alert if server response is bad */}
@@ -96,6 +99,8 @@ const LoginForm = () => {
                             Login
                         </Button>
                     </Form>
+                    </Card.Body>
+                    </Card>
                 </div>
         </>
     );
