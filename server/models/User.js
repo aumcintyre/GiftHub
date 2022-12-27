@@ -18,6 +18,16 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
+        secretSanta: {
+            type: String
+        },
+        exchanges: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Exchange'
+            }
+        ],
+        // }
         // TODO: WISHLIST schema
     },
     // // set this to use virtual below
