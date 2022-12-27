@@ -1,6 +1,6 @@
 import React from 'react';
 
-class WishCreator extends React.Component {
+class CreateWishlist extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,7 +16,7 @@ class WishCreator extends React.Component {
     handleButtonClick = () => {
         const newWish = [...this.state.items,
         this.state.inputValue];
-        this.setState({ items: newWish, inputValue: ''});
+        this.setState({ items: newWish, inputValue: '' });
     }
 
     // handleRemoveClick = (index) => {
@@ -28,25 +28,25 @@ class WishCreator extends React.Component {
 
 
     render() {
-    return (
-    <>
-    <div>
-        <input value={this.state.inputValue} onChange=
-        {this.handleInputChange} />
-        
-        <button onClick={this.handleButtonClick}>Add Wish </button>
-        <ul>
-        {this.state.items.map((item, index) => (
-            <li key={item}>{item}
-            {/* <button onClick={() = > 
+        return (
+            <>
+                <div className='wishlist'>
+                    <input value={this.state.inputValue} onChange=
+                        {this.handleInputChange} />
+
+                    <button onClick={this.handleButtonClick}>Add Wish </button>
+                    <ul className='wishlist-items'>
+                        {this.state.items.map((item, index) => (
+                            <li key={item}>{item}
+                                {/* <button onClick={() = > 
             this.handleRemoveClick(index)}>DESTROY</button> */}
-            </li>
-        ))}
-        </ul>
-    </div>
-    </>
-    
-    );
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </>
+
+        );
     }
 }
-export default WishCreator;
+export default CreateWishlist;

@@ -1,34 +1,13 @@
-import React, { useState } from 'react';
+import { Form, Button, Alert, Card } from 'react-bootstrap';
 
-export default function PortfolioContainer() {
-    const [currentPage, setCurrentPage] = useState('Home');
-
-
-    const renderPage = () => {
-        if (currentPage === 'Home') {
-            return <Home resumeInfo={resumeInfo} />;
-        }
-        if (currentPage === 'About') {
-            return <About resumeInfo={resumeInfo} />;
-        }
-        if (currentPage === 'Projects') {
-            return <Projects resumeInfo={resumeInfo} />;
-        }
-        if (currentPage === 'Contact') {
-            return <Contact resumeInfo={resumeInfo} />;
-        }
-        if (currentPage === 'Resume') {
-            return <Resume resumeInfo={resumeInfo} />;
-        }
-    };
-
-    const handlePageChange = (page) => setCurrentPage(page);
-
+function Home() {
     return (
-        <div>
-            <Header currentPage={currentPage} handlePageChange={handlePageChange} />
-            {renderPage()}
-            <Footer resumeInfo={resumeInfo} />
+        <div className='center-box'>
+            <Card>
+                <h1>HELLO WORLD</h1>
+            </Card>
         </div>
     );
 }
+
+export default Home;

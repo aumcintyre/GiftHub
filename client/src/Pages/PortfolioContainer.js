@@ -6,7 +6,7 @@ import Home from './Home'
 import Footer from '../Components/Footer'
 import CreateExchange from '../Components/CreateExchange'
 import JoinExchange from '../Components/JoinExchange'
-import SimpleCard from '../Components/Gallery';
+import Gallery from '../Components/Gallery';
 import ProfilePage from '../Components/ProfilePage';
 
 export default function PortfolioContainer() {
@@ -47,9 +47,8 @@ export default function PortfolioContainer() {
         <div>
             <Header currentPage={currentPage} handlePageChange={handlePageChange} />
             {renderPage()}
-            <SimpleCard />
-            <Footer/>
-            
+            {/*   <Footer/> */}
+
             {/* <Footer resumeInfo={resumeInfo} /> */}
         </div>
     );

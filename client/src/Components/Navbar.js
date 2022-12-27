@@ -9,7 +9,7 @@ function navBar() {
           <Container>
             <Navbar.Brand href="#home">GiftHub</Navbar.Brand>
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link href="#home" >Home</Nav.Link>
               <Nav.Link href="#features">Account</Nav.Link>
             </Nav>
           </Container>

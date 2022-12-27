@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 // import { Form, Button, Alert } from 'react-bootstrap/';
-import WishCreator from "../Components/CreateWishlist"
+import CreateWishlist from "./CreateWishlist"
 import Exchange from './Exchange';
 
 
@@ -22,21 +22,21 @@ function ProfilePage(props) {
 
     return (
         <div className="profile-page">
-            <form onSubmit={handleSearchSubmit}>
+            <form className="profileSearchBar" onSubmit={handleSearchSubmit}>
                 <input
                     type="text"
                     placeholder="search here for presents"
                     value={searchTerm}
-                    onChange={handleSearchChange}/>
-            <button type="submit">Search</button>
+                    onChange={handleSearchChange} />
+                <button type="submit">Search</button>
             </form>
-                <div>
-                    <h1>THIS IS THE PROFILE PAGE</h1>
-                    {/* <p>{user.Wishlist}</p> */}
-                </div>
-                <button onClick={() => setShowWishCreator(true)}>Make your wishlist!</button>
-                {showWishCreator && <WishCreator />}
-                <Exchange />
+            <div>
+                <h1>THIS IS THE PROFILE PAGE</h1>
+                {/* <p>{user.Wishlist}</p> */}
+            </div>
+            <button onClick={() => setShowWishCreator(true)}>Make your wishlist!</button>
+            {showWishCreator && <CreateWishlist />}
+            <Exchange />
         </div>
     )
 }
