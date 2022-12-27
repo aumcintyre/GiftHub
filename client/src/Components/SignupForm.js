@@ -63,68 +63,68 @@ const SignupForm = () => {
 
     return (
         <>
-            <div className="landing-page">
-            <Card style={{ width: '18rem' }}>
-            <Card.Body>
-                <div className="signup-form">
-                    {/* This is needed for the validation functionality above */}
-                    <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-                        {/* show alert if server response is bad */}
-                        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-                            Something went wrong with your signup!
-                        </Alert>
-                        <h1> Sign Up </h1>
-                        <Form.Group>
-                            <Form.Label htmlFor='username'>Username</Form.Label>
-                            <Form.Control
-                                type='text'
-                                placeholder='Your username'
-                                name='username'
-                                onChange={handleInputChange}
-                                value={userFormData.username}
-                                required
-                            />
-                            <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
-                        </Form.Group>
+            <div className="center-box">
+                <Card style={{ width: '18rem' }}>
+                    <Card.Body>
+                        <div className="">
+                            {/* This is needed for the validation functionality above */}
+                            <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+                                {/* show alert if server response is bad */}
+                                <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                                    Something went wrong with your signup!
+                                </Alert>
+                                <h1> Sign Up </h1>
+                                <Form.Group>
+                                    <Form.Label htmlFor='username'>Username</Form.Label>
+                                    <Form.Control
+                                        type='text'
+                                        placeholder='Your username'
+                                        name='username'
+                                        onChange={handleInputChange}
+                                        value={userFormData.username}
+                                        required
+                                    />
+                                    <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
+                                </Form.Group>
 
-                        <Form.Group>
-                            <Form.Label htmlFor='email'>Email</Form.Label>
-                            <Form.Control
-                                type='email'
-                                placeholder='Your email address'
-                                name='email'
-                                onChange={handleInputChange}
-                                value={userFormData.email}
-                                required
-                            />
-                            <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
-                        </Form.Group>
+                                <Form.Group>
+                                    <Form.Label htmlFor='email'>Email</Form.Label>
+                                    <Form.Control
+                                        type='email'
+                                        placeholder='Your email address'
+                                        name='email'
+                                        onChange={handleInputChange}
+                                        value={userFormData.email}
+                                        required
+                                    />
+                                    <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
+                                </Form.Group>
 
-                        <Form.Group>
-                            <Form.Label htmlFor='password'>Password</Form.Label>
-                            <Form.Control
-                                type='password'
-                                placeholder='Your password'
-                                name='password'
-                                onChange={handleInputChange}
-                                value={userFormData.password}
-                                required
-                            />
-                            <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
-                        </Form.Group>
-                        <Button
-                            disabled={!(userFormData.username && userFormData.email && userFormData.password)}
-                            type='submit'
-                            variant='success'>
-                            Sign up
-                        </Button>
-                    </Form>
-                </div>
-              
-                
-            
+                                <Form.Group>
+                                    <Form.Label htmlFor='password'>Password</Form.Label>
+                                    <Form.Control
+                                        type='password'
+                                        placeholder='Your password'
+                                        name='password'
+                                        onChange={handleInputChange}
+                                        value={userFormData.password}
+                                        required
+                                    />
+                                    <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
+                                </Form.Group>
+                                <button class='btn-one'
+                                    disabled={!(userFormData.username && userFormData.email && userFormData.password)}
+                                    type='submit'
+                                    variant='success'>
+                                    Sign up
+                                </button>
+                            </Form>
+                        </div>
 
-                </Card.Body>
+
+
+
+                    </Card.Body>
                 </Card>
             </div>
         </>
