@@ -4,7 +4,7 @@ const exchangeSchema = new Schema(
     {   
         
         creatorId:{
-            type: String,
+            type: Schema.Types.ObjectId,
             required: true
         },
         roomName: {
