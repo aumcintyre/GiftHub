@@ -5,6 +5,7 @@ const exchangeSchema = new Schema(
         
         creatorId:{
             type: Schema.Types.ObjectId,
+            ref: 'User',
             required: true
         },
         roomName: {

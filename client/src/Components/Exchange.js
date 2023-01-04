@@ -4,19 +4,15 @@ import { useQuery } from '@apollo/client';
 
 import React from 'react';
 import { GET_EXCHANGES_BY_USER } from '../utils/queries';
-
-// const getExchanges = GET_EXCHANGES
-
-
-// const getExchanges = GET_EXCHANGES
-// const [getExchanges, { error }] = useQuery(GET_EXCHANGES);
-// You are 
+// import { GET_EXCHANGES } from '../utils/queries';
 
 function Exchange() {
   const { data } = useQuery(GET_EXCHANGES_BY_USER);
+  // const { data } = useQuery(GET_EXCHANGES);
+  console.log(data);
   let exchanges;
   if (data) {
-    exchanges = data.exchanges;
+    exchanges = data.exchangeByUser;
   }
 
   console.log("look at your exchanges:", exchanges)
@@ -24,41 +20,24 @@ function Exchange() {
 
 
   return (
-    <>
-      {exchanges.map((exchange) => (
-        <Card>
-          <Card.Header as="h5" bg='primary'> {exchange.roomName} </Card.Header>
-          <Card.Body>
-            <Card.Text>
-              IMPORTED API DATA HERE
-            </Card.Text>
-            <Button variant="primary">LINK TO ITEM</Button>
-          </Card.Body>
-        </Card>
-      ))}
-    </>
+    <div>
+      {exchanges ? (
+        <>
+        {exchanges.map((exchange) => (
+          <Card>
+            <Card.Header as="h5" bg='primary'> {exchange.roomName} </Card.Header>
+            <Card.Body>
+              <Card.Text>
+                IMPORTED API DATA HERE
+              </Card.Text>
+              <Button variant="primary">LINK TO ITEM</Button>
+            </Card.Body>
+          </Card>
+        ))}
+        </>
+      ) : null }
+    </div>
   );
 }
-
-
-// function exchangeCard() {
-//   return (
-//     <>
-//       <Card>
-//         <Card.Header as="h5" bg='primary'> EXCHANGE NAME </Card.Header>
-//         <Card.Body>
-//           <Card.Text>
-//             IMPORTED API DATA HERE
-//           </Card.Text>
-//           <Button variant="primary">LINK TO ITEM</Button>
-//         </Card.Body>
-//       </Card>
-//     </>
-//   );
-// }
-
-
-// export default exchangeCard;
-
 
 export default Exchange;

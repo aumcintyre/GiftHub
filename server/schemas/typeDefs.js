@@ -11,7 +11,7 @@ const typeDefs = gql
 
     type Exchange {
         _id: ID
-        creatorID: ID
+        creatorID: String
         roomName: String
         passphrase: String
         users: [User]

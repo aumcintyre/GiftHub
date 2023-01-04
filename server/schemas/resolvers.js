@@ -14,7 +14,8 @@ const resolvers = {
 
         // GET all exchanges
         exchanges: async (parent, args, context) => {
-            // return await Exchange.find({}).populate('users');
+            console.log("seeking exchanges////")
+            return await Exchange.find({}).populate('users');
 
 
             // if (context.user) {
@@ -23,21 +24,18 @@ const resolvers = {
                 
             //     return exchanges
             // }
-            console.log(context.user)
-            const exchanges = await Exchange.find({
-                "creatorId": context.user._id
-            });
-            return exchanges
         },
         exchange: async (parent, args) => {
             const exchange = await Exchange.findById(args.id);
             return exchange;
         },
         exchangeByUser: async(parent, args, context) => {
+            console.log("context.user is right here:", context.user)
             if (context.user) {
                 console.log("seeking exchanges////")
-                const exchanges = await Exchange.findById(context.user._id);
-                
+                const exchanges = await Exchange.find({
+                    "users": context.user._id
+                });
                 return exchanges
             }
         }
