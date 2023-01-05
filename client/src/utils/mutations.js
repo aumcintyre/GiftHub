@@ -47,8 +47,9 @@ export const ADD_EXCHANGE = gql`
             passphrase: $passphrase
             ) {
                 _id
-                passphrase
                 roomName
+                passphrase
+                creatorID
                 users {
                     _id
                     username

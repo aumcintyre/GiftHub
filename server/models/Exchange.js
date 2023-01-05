@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const exchangeSchema = new Schema(
     {   
         
-        creatorId:{
+        creatorID:{
             type: Schema.Types.ObjectId,
             ref: 'User',
             required: true
@@ -12,7 +12,6 @@ const exchangeSchema = new Schema(
             type: String,
             required: true,
         },
-
         passphrase: {
             type: String,
             required: true,

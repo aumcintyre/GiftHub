@@ -16,14 +16,6 @@ const resolvers = {
         exchanges: async (parent, args, context) => {
             console.log("seeking exchanges////")
             return await Exchange.find({}).populate('users');
-
-
-            // if (context.user) {
-            //     console.log("seeking exchanges////")
-            //     const exchanges = await Exchange.findById(context.user._id);
-                
-            //     return exchanges
-            // }
         },
         exchange: async (parent, args) => {
             const exchange = await Exchange.findById(args.id);
@@ -85,7 +77,7 @@ const resolvers = {
                 const exchange = await Exchange.create({
                     roomName: args.roomName,
                     passphrase: args.passphrase,
-                    creatorId: context.user._id,
+                    creatorID: context.user._id,
                     users: [context.user._id]
                 });
                 console.log("here's your precious exchange:", exchange)
