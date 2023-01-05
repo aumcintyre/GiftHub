@@ -6,10 +6,11 @@ const wishSchema = new Schema(
             type: String,
             required: true
         },
-        // price: {
-        //     type: Float,
-        //     //NOT required
-        // }
+        owner:{
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        },
     }
 )
 module.exports = wishSchema;

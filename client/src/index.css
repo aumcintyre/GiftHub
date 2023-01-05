@@ -30,6 +30,34 @@ form {
 
 }
 
+.nav-dropdown {
+  display: block;
+  float: right;
+  margin-right: 15px;
+}
+
+.nav-active {
+  color: white;
+  border: solid;
+  border-color: forestgreen;
+  border-width: 2px;
+  border-radius: 7px;
+}
+
+.nav-inactive {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+}
+
+.nav-inactive a {
+  color: red;
+}
+
+.nav-active a {
+  color: forestgreen;
+  border-bottom: 3px;
+}
+
 .form-field {
   max-width: 250px;
   display: flex;
@@ -189,18 +217,18 @@ form {
 }
 
 .custom-nav {
-  display: flex;
+  display: block;
+  height: 60px;
   border-style: solid;
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
   border-color: antiquewhite;
   background-color: var(--primary-color);
-  border-radius: 10px;
+  /* border-radius: 10px; */
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
-  justify-content: center;
 }
 
 .btn-one {
@@ -218,4 +246,38 @@ form {
   min-width: auto;
   padding: 8px 10px;
   margin-top: 20px
+}
+
+.exchangeContainers {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  background-color: rgb(252, 143, 0);
+
+  border-radius: 15px;
+}
+
+.card-body {
+  background-color: black;
+}
+
+.gradiant {
+  background-color: black;
+}
+
+.GifteeMemberCard {
+  width: auto;
+  display: flex;
+  justify-content: center;
+
+}
+
+.GifteeMembers {
+  width: auto;
+  height: auto;
+  padding: 10px;
+  margin: 10px;
+  background-color: White;
+  border-radius: 10px;
+
 }

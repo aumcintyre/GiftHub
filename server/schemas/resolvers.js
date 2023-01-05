@@ -1,6 +1,7 @@
 const { User, Wish, Exchange } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const { default: CreateWishlist } = require('../../client/src/Components/CreateWishlist');
 
 const resolvers = {
     Query: {
@@ -73,6 +74,19 @@ const resolvers = {
                 console.error(err)
             }
         },
+        addWishItem: async (parent, args, context) => {
+            console.log("user prop:  ", context.user)
+            try {
+                const addWishItem = await CreateWishlist.create({
+                    item: args.item,
+                    owner: context.user
+                });
+                return addWishItem ;
+                
+            } catch (err) {
+                console.error(err); 
+            }
+        },
         addExchange: async (parent, args, context) => {
             console.log("user prop:  ", context.user)
             try {
@@ -80,7 +94,7 @@ const resolvers = {
                     roomName: args.roomName,
                     passphrase: args.passphrase,
                     creatorID: context.user._id,
-                    users: [context.user]
+                    users: [context.user.username]
                 });
                 return exchange ;
                 

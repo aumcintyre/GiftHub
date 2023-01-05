@@ -1,10 +1,9 @@
-
+// import TitleImg from "./images/GiftHubTitle.png"
 import { Container, Nav, Navbar, Dropdown, DropdownButton } from 'react-bootstrap/';
 import React from 'react';
 import Auth from '../utils/auth';
-// import Dropdown from 'react-bootstrap/Dropdown';
-// import DropdownButton from 'react-bootstrap/DropdownButton';
 // import context from 'react-bootstrap/esm/AccordionContext';
+// import image from './path'
 
 function Header({ currentPage, handlePageChange }) {
   return (
@@ -50,35 +49,52 @@ function Header({ currentPage, handlePageChange }) {
 
 
 
-<div className="nav-bar custom-nav">
-  <img src='images/GiftHubTitle.png' />
-        <DropdownButton className='btn-secondary' title='Menu' variant='success'>
+<div className="custom-nav">
+  {/* <img src={process.env.PUBLIC_URL + "./images/GiftHubTitle.png"} /> */}
+  {/* <img src={TitleImg} /> */}
+  {/* <img className='myPic' src={require("./images/GiftHubTitle.png")} /> */}
+        <DropdownButton className='nav-dropdown' title='Menu' variant='success'>
           <Container>
-              <Dropdown.Item className='nav-link'><a href='#home' onClick={() => handlePageChange('Home')} ><button className={currentPage === 'Home' ? 'btn btn-light' : 'btn btn-secondary'}>Home</button></a></Dropdown.Item>
-
+            <div className={currentPage === 'Home' ? 'nav-active' : 'nav-inactive'}>
+              <Dropdown.Item ><a href='#home' onClick={() => handlePageChange('Home')} >Home</a></Dropdown.Item>
+</div>
               {Auth.loggedIn() ? (
                 <>
                 </>
               ) : (
-                <Dropdown.Item className='nav-link'><a href='#login' onClick={() => handlePageChange('Login')}><button className={currentPage === 'Login' ? 'btn btn-light' : 'btn btn-secondary'}>Login</button></a></Dropdown.Item>
+                <div className={currentPage === 'Login' ? 'nav-active' : 'nav-inactive'}> 
+                <Dropdown.Item><a href='#login' onClick={() => handlePageChange('Login')}>Login</a></Dropdown.Item>
+                </div>
               )}
 
               {Auth.loggedIn() ? (
                 <>
                 </>
               ) : (
-                <><Dropdown.Item className='nav-link'><a href='#signup' onClick={() => handlePageChange('signUp')}><button className={currentPage === 'signUp' ? 'btn btn-light' : 'btn btn-secondary'}>Sign Up</button></a></Dropdown.Item></>
+                <>
+                <div className={currentPage === 'signUp' ? 'nav-active' : 'nav-inactive'}>
+                <Dropdown.Item ><a href='#signup' onClick={() => handlePageChange('signUp')}>Sign Up</a></Dropdown.Item>
+                </div>
+                </>
               )}
 
-              <Dropdown.Item className='nav-link'><a href='#createexchange' onClick={() => handlePageChange('createExchange')}><button className={currentPage === 'createExchange' ? 'btn btn-light' : 'btn btn-secondary'}>Create Exchange</button></a></Dropdown.Item>
+              <div className={currentPage === 'createExchange' ? 'nav-active' : 'nav-inactive'}>
+              <Dropdown.Item ><a href='#createexchange' onClick={() => handlePageChange('createExchange')}>Create Exchange</a></Dropdown.Item>
+            </div>
 
-              <Dropdown.Item className='nav-link'><a href='#joinexchange' onClick={() => handlePageChange('joinExchange')}><button className={currentPage === 'joinExchange' ? 'btn btn-light' : 'btn btn-secondary'}>Join Exchange</button></a></Dropdown.Item>
+            <div className={currentPage === 'joinExchange' ? 'nav-active' : 'nav-inactive'}>
+              <Dropdown.Item ><a href='#joinexchange' onClick={() => handlePageChange('joinExchange')}>Join Exchange</a></Dropdown.Item>
+            </div>
 
-              <Dropdown.Item className='nav-link'><a href='#profile' onClick={() => handlePageChange('profilepage')}><button className={currentPage === 'profilepage' ? 'btn btn-light' : 'btn btn-secondary'}>Profile</button></a></Dropdown.Item>
-
-              <Dropdown.Item className='nav-link'><a href='#exchange' onClick={() => handlePageChange('exchange')}><button className={currentPage === 'exchange' ? 'btn btn-light' : 'btn btn-secondary'}>Exchange</button></a></Dropdown.Item>
+<div className={currentPage === 'profilepage' ? 'nav-active' : 'nav-inactive'}>
+              <Dropdown.Item ><a href='#profile' onClick={() => handlePageChange('profilepage')}>Profile</a></Dropdown.Item>
+</div>
+              <Dropdown.Item className={currentPage === 'exchange' ? 'nav-active' : 'nav-inactive'}><a href='#exchange' onClick={() => handlePageChange('exchange')}>Exchange</a></Dropdown.Item>
               {Auth.loggedIn() ? (
-                <><Dropdown.Item className='nav-link'><a href='#logout' onClick={() => Auth.logout()}><button className="btn btn-secondary">Logout</button></a></Dropdown.Item>
+                <>
+                <div>
+                <Dropdown.Item className='nav-inactive'><a href='#logout' onClick={() => Auth.logout()}>Logout</a></Dropdown.Item>
+                </div>
                 </>
               ) : (
                 <></>

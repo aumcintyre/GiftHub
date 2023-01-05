@@ -76,3 +76,16 @@ export const JOIN_EXCHANGE = gql`
         }
     }
 `;
+
+export const ADD_WISH = gql`
+    mutation addWishItem(
+        $item: String!
+        ) {
+        addWishItem(
+            item: $item
+            ) {
+                _id
+                item
+            }
+      }
+`;

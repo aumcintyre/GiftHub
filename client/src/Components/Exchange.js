@@ -1,35 +1,57 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { useQuery } from '@apollo/client';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 
 import React from 'react';
 import { GET_EXCHANGES_BY_USER } from '../utils/queries';
 import CreateWishlist from './CreateWishlist';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-
-
+import TitleImg from '../images/GiftHubTitle.png'
 
 function Exchange() {
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Body>
-        <Card.Title>User Name</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">Exchange Name</Card.Subtitle>
-        <Card.Text>
-          <ul>
-            <li> Item 1 </li>
-            <li> Item 2 </li>
-            <li> Item 3 </li>
-            <li> Item 4 </li>
-            <li> Item 5 </li>
+    <div className='leftSide'>
 
-          </ul>
-        </Card.Text>
-        <Card.Link href="#">Profile Link</Card.Link>
-        <Card.Link href="#">Amazon Wishlist Link</Card.Link>
-      </Card.Body>
-    </Card>
+      <div className='GifteeMemberCard'>
+        <div className="GifteeMembers">
+          <p> John</p>
+        </div>
+
+        <div className="GifteeMembers">
+          <p> John</p>
+        </div>
+
+        <div className="GifteeMembers">
+          <p> John</p>
+        </div>
+      </div>
+
+      <Row xs={1} md={2} className="g-4">
+
+        {/* User*/}
+        <div className='exchangeContainers'>
+          <Col>
+            <Card className="gradiant" >
+              {/* <img className='myPic' src={require('../images/GiftHubTitle.png')} /> */}
+              <Card.Title class='text-black'>THE USER WHO YOU GOT</Card.Title>
+              <Card.Text class='text-black'>
+                The Exchange you are apart of
+                <ul>
+                  <li>Thir wishlist that links to the page where you can buy it</li>
+                  <li> <a href='https://www.amazon.com'>Link to their amazon wishlist item</a></li>
+                  <li> <a href='https://www.target.com'>Or a link to a different amazon item </a></li>
+                </ul>
+              </Card.Text>
+            </Card>
+          </Col>
+        </div>
+      </Row>
+    </div>
+
   );
 }
 
