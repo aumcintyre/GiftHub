@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button, Alert, Card } from 'react-bootstrap/';
+import { Form, Alert, Card } from 'react-bootstrap/';
 import { useMutation } from "@apollo/client";
 import { JOIN_EXCHANGE } from '../utils/mutations';
 
@@ -24,7 +24,7 @@ const ExchangeJoiner = () => {
             console.log('data::::', data)
 
         } catch (err) {
-            console.error(err);
+            console.error(error);
             setShowAlert(true);
         }
 
@@ -44,7 +44,7 @@ const ExchangeJoiner = () => {
                         <Form onSubmit={handleButtonClick}>
                             {/* show alert if server response is bad */}
                             <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-                                Something went wrong with your new exchange!
+                                Invalid room name or incorrect passphrase!
                             </Alert>
                             <h1> Join an Exchange </h1>
                             <Form.Group>
@@ -76,7 +76,7 @@ const ExchangeJoiner = () => {
                                 disabled={!(exchangeData.roomName && exchangeData.passphrase)}
                                 type='submit'
                                 variant='success'>
-                                Create room
+                                Join room
                             </button>
                         </Form>
                     </Card.Body>

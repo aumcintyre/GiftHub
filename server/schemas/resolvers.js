@@ -20,8 +20,7 @@ const resolvers = {
         },
 
         // GET all exchanges
-        exchanges: async (parent, args, context) => {
-            console.log("seeking exchanges////")
+        exchanges: async () => {
             return await Exchange.find({}).populate('users');
         },
         exchange: async (parent, args) => {
@@ -29,14 +28,10 @@ const resolvers = {
             return exchange;
         },
         exchangeByUser: async(parent, args, context) => {
-            console.log("context.user is right here:", context.user)
-            if (context.user) {
-                console.log("seeking exchanges////")
-                const exchanges = await Exchange.find({
-                    "users": context.user._id
-                });
-                return exchanges
-            }
+            const exchanges = await Exchange.find({
+                "users.user._id": context.user._id
+            });
+            return exchanges
         }
     },
     Mutation: {
@@ -85,9 +80,8 @@ const resolvers = {
                     roomName: args.roomName,
                     passphrase: args.passphrase,
                     creatorID: context.user._id,
-                    users: [context.user._id]
+                    users: [context.user]
                 });
-                console.log("here's your precious exchange:", exchange)
                 return exchange ;
                 
             } catch (err) {
@@ -103,7 +97,8 @@ const resolvers = {
         },
         joinExchange: async (parent, args, context) => {
             try {
-                const exchange = await Exchange.findOneAndUpdate({id: args.exchangeId, passphrase: args.passphrase}, {$push: {users: user}}, {new:true})
+                console.log("trying to join! on backend--- here look at context.user:", context.user)
+                const exchange = await Exchange.findOneAndUpdate({roomName: args.roomName, passphrase: args.passphrase}, {$push: {users: context.user}}, {new:true})
                 return exchange;
             } catch(err) {
                 console.error(err);

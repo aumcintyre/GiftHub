@@ -44,7 +44,7 @@ const typeDefs = gql
         loginUser(username: String!, password: String!): Auth
         addExchange(roomName: String!, passphrase: String!): Exchange
         deleteExchange(exchangeId: ID!): Exchange
-        joinExchange(exchangeId: ID!, userId: ID!): Exchange
+        joinExchange(roomName: String!, passphrase: String!): Exchange
         removeFromExchange(exchangeId: ID!, userId: ID!): Exchange
     }
     
