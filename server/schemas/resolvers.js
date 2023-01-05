@@ -13,7 +13,8 @@ const resolvers = {
         },
 
         // GET all exchanges
-        exchanges: async () => {
+        exchanges: async (parent, args, context) => {
+            console.log("seeking exchanges////")
             return await Exchange.find({}).populate('users');
         },
         exchange: async (parent, args) => {
@@ -21,10 +22,14 @@ const resolvers = {
             return exchange;
         },
         exchangeByUser: async(parent, args, context) => {
-            const exchanges = await Exchange.find({
-                "users.user._id": context.user._id
-            });
-            return exchanges
+            console.log("context.user is right here:", context.user)
+            if (context.user) {
+                console.log("seeking exchanges////")
+                const exchanges = await Exchange.find({
+                    "users": context.user._id
+                });
+                return exchanges
+            }
         }
     },
     Mutation: {
@@ -67,14 +72,15 @@ const resolvers = {
             }
         },
         addExchange: async (parent, args, context) => {
-            console.log("context: ", context, "user prop:  ", context.user)
+            console.log("user prop:  ", context.user)
             try {
                 const exchange = await Exchange.create({
                     roomName: args.roomName,
                     passphrase: args.passphrase,
-                    creatorId: [context.user._id],
+                    creatorID: context.user._id,
                     users: [context.user._id]
                 });
+                console.log("here's your precious exchange:", exchange)
                 return exchange ;
                 
             } catch (err) {
