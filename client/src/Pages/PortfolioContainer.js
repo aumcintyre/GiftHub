@@ -8,10 +8,18 @@ import CreateExchange from '../Components/CreateExchange'
 import JoinExchange from '../Components/JoinExchange'
 import Gallery from '../Components/Gallery';
 import ProfilePage from '../Components/ProfilePage';
+import Exchange from '../Components/Exchange';
+import { useQuery } from '@apollo/client';
+import { GET_ME } from '../utils/queries';
+
+
 
 export default function PortfolioContainer() {
     const [currentPage, setCurrentPage] = useState('Home');
-
+    
+    const { loading, data }  = useQuery(GET_ME);
+    const userData = data?.me || []
+    
 
     const renderPage = () => {
         if (currentPage === 'Home') {
@@ -29,10 +37,14 @@ export default function PortfolioContainer() {
         if (currentPage === 'joinExchange') {
             return <JoinExchange />;
         }
+        if (currentPage === 'exchange') {
+            return <Exchange />;
+        }
         //If you aren't logged in, should you still see this page in the header?
         if (currentPage === 'profilepage') {
-            return <ProfilePage />;
+             return <ProfilePage user={userData}/>;
         }
+       
         // if (currentPage === 'Contact') {
         //     return <Contact resumeInfo={resumeInfo} />;
         // }

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Form, Button, Alert, Card } from 'react-bootstrap/';
+import { Form, Alert, Card } from 'react-bootstrap/';
 import { useMutation } from "@apollo/client";
-import { ADD_EXCHANGE } from '../utils/mutations';
+import { JOIN_EXCHANGE } from '../utils/mutations';
 
-const ExchangeCreator = () => {
+const ExchangeJoiner = () => {
     const [exchangeData, setExchangeData] = useState({ roomName: '', passphrase: '' });
 
-    const [addExchange, { error }] = useMutation(ADD_EXCHANGE);
+    const [joinExchange, { error }] = useMutation(JOIN_EXCHANGE);
     const [showAlert, setShowAlert] = useState(false);
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -16,18 +16,15 @@ const ExchangeCreator = () => {
     const handleButtonClick = async (e) => {
         e.preventDefault();
 
-        // const newExchange = [...exchangeData];
-        // console.log(newExchange);
-
         try {
-            console.log("TRYING!!!!!");
-            const { data } = await addExchange({
+            console.log("TRYING to join!!!!!");
+            const { data } = await joinExchange({
                 variables: { ...exchangeData }
             });
             console.log('data::::', data)
 
         } catch (err) {
-            console.error(err);
+            console.error(error);
             setShowAlert(true);
         }
 
@@ -47,7 +44,7 @@ const ExchangeCreator = () => {
                         <Form onSubmit={handleButtonClick}>
                             {/* show alert if server response is bad */}
                             <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-                                Something went wrong with your new exchange!
+                                Invalid room name or incorrect passphrase!
                             </Alert>
                             <h1> Join an Exchange </h1>
                             <Form.Group>
@@ -79,7 +76,7 @@ const ExchangeCreator = () => {
                                 disabled={!(exchangeData.roomName && exchangeData.passphrase)}
                                 type='submit'
                                 variant='success'>
-                                Create room
+                                Join room
                             </button>
                         </Form>
                     </Card.Body>
@@ -90,4 +87,4 @@ const ExchangeCreator = () => {
     );
 
 };
-export default ExchangeCreator;
+export default ExchangeJoiner;

@@ -1,81 +1,58 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { useQuery } from '@apollo/client';
-// import { useFetch } from '../hooks/useFetch';
-import React, { useState, useEffect } from 'react';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
+
+import React from 'react';
 import { GET_EXCHANGES_BY_USER } from '../utils/queries';
+import CreateWishlist from './CreateWishlist';
+import ListGroup from 'react-bootstrap/ListGroup';
 
-// const getExchanges = GET_EXCHANGES
+import TitleImg from '../images/GiftHubTitle.png'
 
+function Exchange() {
+  return (
+    <div className='leftSide'>
 
-// const getExchanges = GET_EXCHANGES
-// const [getExchanges, { error }] = useQuery(GET_EXCHANGES);
-// You are 
+      <div className='GifteeMemberCard'>
+        <div className="GifteeMembers">
+          <p> John</p>
+        </div>
 
-function Exchange(){
-  const { loading, data } = useQuery(GET_EXCHANGES_BY_USER);
-  const exchanges = data;
-  console.log(exchanges);
+        <div className="GifteeMembers">
+          <p> John</p>
+        </div>
 
-  // const [getExchanges, { error }] = useQuery(GET_EXCHANGES);
-  // console.log("GET EXCHANGES:", getExchanges);
-  // const [exchangeData, setExchangeData] = useState({});
-  
-  // const getExchangeData = async () => {
-  //   const response = await getExchanges();
-  //   //this is sus he says
-  //   // const data = await response.json();
-  //   setExchangeData(response);
-  //   console.log("exchangeDATA is here:", exchangeData);
-  //   return exchangeData;
-  // useEffect(() => {
-  //   try {
-  //     getExchangeData();
-  //     }
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-    
-  // }
-  // )
-    
-    // getExchangeData();
-    // )
-    
-    return (
-    <>
-      <Card>
-        <Card.Header as="h5" bg='primary'> EXCHANGE NAME </Card.Header>
-        <Card.Body>
-          <Card.Text>
-            IMPORTED API DATA HERE
-          </Card.Text>
-          <Button variant="primary">LINK TO ITEM</Button>
-        </Card.Body>
-      </Card>
-    </>
+        <div className="GifteeMembers">
+          <p> John</p>
+        </div>
+      </div>
+
+      <Row xs={1} md={2} className="g-4">
+
+        {/* User*/}
+        <div className='exchangeContainers'>
+          <Col>
+            <Card className="gradiant" >
+              {/* <img className='myPic' src={require('../images/GiftHubTitle.png')} /> */}
+              <Card.Title class='text-black'>THE USER WHO YOU GOT</Card.Title>
+              <Card.Text class='text-black'>
+                The Exchange you are apart of
+                <ul>
+                  <li>Thir wishlist that links to the page where you can buy it</li>
+                  <li> <a href='https://www.amazon.com'>Link to their amazon wishlist item</a></li>
+                  <li> <a href='https://www.target.com'>Or a link to a different amazon item </a></li>
+                </ul>
+              </Card.Text>
+            </Card>
+          </Col>
+        </div>
+      </Row>
+    </div>
+
   );
 }
-
-
-// function exchangeCard() {
-//   return (
-//     <>
-//       <Card>
-//         <Card.Header as="h5" bg='primary'> EXCHANGE NAME </Card.Header>
-//         <Card.Body>
-//           <Card.Text>
-//             IMPORTED API DATA HERE
-//           </Card.Text>
-//           <Button variant="primary">LINK TO ITEM</Button>
-//         </Card.Body>
-//       </Card>
-//     </>
-//   );
-// }
-
-
-// export default exchangeCard;
-
 
 export default Exchange;

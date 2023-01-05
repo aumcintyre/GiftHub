@@ -3,15 +3,15 @@ const { Schema, model } = require('mongoose');
 const exchangeSchema = new Schema(
     {   
         
-        creatorId:{
-            type: String,
+        creatorID:{
+            type: Schema.Types.ObjectId,
+            ref: 'User',
             required: true
         },
         roomName: {
             type: String,
             required: true,
         },
-
         passphrase: {
             type: String,
             required: true,

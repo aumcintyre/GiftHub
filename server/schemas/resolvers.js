@@ -1,9 +1,17 @@
 const { User, Wish, Exchange } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const { default: CreateWishlist } = require('../../client/src/Components/CreateWishlist');
 
 const resolvers = {
     Query: {
+        me: async (parent, args, context) => {
+            if (context.user) {
+                const userData = await User.findOne({ _id: context.user._id }).select('-__v -password')
+                return userData;
+            }
+            throw new AuthenticationError('User not logged in!');
+        },
         users: async () => {
             return await User.find({});
         },
@@ -66,14 +74,27 @@ const resolvers = {
                 console.error(err)
             }
         },
+        addWishItem: async (parent, args, context) => {
+            console.log("user prop:  ", context.user)
+            try {
+                const addWishItem = await CreateWishlist.create({
+                    item: args.item,
+                    owner: context.user
+                });
+                return addWishItem ;
+                
+            } catch (err) {
+                console.error(err); 
+            }
+        },
         addExchange: async (parent, args, context) => {
-            console.log("context: ", context, "user prop:  ", context.user)
+            console.log("user prop:  ", context.user)
             try {
                 const exchange = await Exchange.create({
                     roomName: args.roomName,
                     passphrase: args.passphrase,
-                    creatorId: [context.user._id],
-                    users: [context.user._id]
+                    creatorID: context.user._id,
+                    users: [context.user.username]
                 });
                 return exchange ;
                 
@@ -88,23 +109,19 @@ const resolvers = {
                 console.error(err)
             }
         },
-        addUserToExchange: async (parent, args) => {
+        joinExchange: async (parent, args, context) => {
             try {
-                const user = await User.findById(args.userId);
-                const exchange = await Exchange.findOneAndUpdate({id: args.exchangeId}, {$push: {users: user}}, {new:true})
+                console.log("trying to join! on backend--- here look at context.user:", context.user)
+                const exchange = await Exchange.findOneAndUpdate({roomName: args.roomName, passphrase: args.passphrase}, {$push: {users: context.user}}, {new:true})
                 return exchange;
             } catch(err) {
-                console.error(err)
+                console.error(err);
+                alert("Invalid Room or Passphrase!");
             }
-            // const exchange = await Exchange.findById(args.exchangeId);
-            // const user = await User.findById(args.userId);
-
-            // exchange.update({}, {$set: {users: [...users, user]}})
-            // return exchange;
         },
         removeFromExchange: async(parent, args) => {
             try {
-                await Exchange.findOneAndUpdate({id: args.exhangeId}, {$pull: {users: {id: args.userId}} }, {new:true})
+                await Exchange.findOneAndUpdate({id: args.exhangeId, passphrase: args.passphrase}, {$pull: {users: {id: args.userId}} }, {new:true})
             } catch (err) {
                 console.error(err)
             }

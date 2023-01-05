@@ -6,7 +6,7 @@ const typeDefs = gql
     type Wish {
         _id: ID
         itemName: String!
-        price: Int
+        owner: [User]
     }
 
     type Exchange {
@@ -30,6 +30,7 @@ const typeDefs = gql
     }
 
     type Query {
+        me: User
         user(_id: ID!): User
         users: [User]
         exchanges: [Exchange]
@@ -38,12 +39,13 @@ const typeDefs = gql
     }
 
     type Mutation {
+        addWishItem(item: String!): Wish
         addUser(username: String!, email: String!, password: String!): Auth
         deleteUser(userId: ID!): User
         loginUser(username: String!, password: String!): Auth
         addExchange(roomName: String!, passphrase: String!): Exchange
         deleteExchange(exchangeId: ID!): Exchange
-        addUserToExchange(exchangeId: ID!, userId: ID!): Exchange
+        joinExchange(roomName: String!, passphrase: String!): Exchange
         removeFromExchange(exchangeId: ID!, userId: ID!): Exchange
     }
     
