@@ -13,8 +13,7 @@ const resolvers = {
         },
 
         // GET all exchanges
-        exchanges: async (parent, args, context) => {
-            console.log("seeking exchanges////")
+        exchanges: async () => {
             return await Exchange.find({}).populate('users');
         },
         exchange: async (parent, args) => {
@@ -22,14 +21,10 @@ const resolvers = {
             return exchange;
         },
         exchangeByUser: async(parent, args, context) => {
-            console.log("context.user is right here:", context.user)
-            if (context.user) {
-                console.log("seeking exchanges////")
-                const exchanges = await Exchange.find({
-                    "users": context.user._id
-                });
-                return exchanges
-            }
+            const exchanges = await Exchange.find({
+                "users.user._id": context.user._id
+            });
+            return exchanges
         }
     },
     Mutation: {
@@ -78,9 +73,8 @@ const resolvers = {
                     roomName: args.roomName,
                     passphrase: args.passphrase,
                     creatorID: context.user._id,
-                    users: [context.user._id]
+                    users: [context.user]
                 });
-                console.log("here's your precious exchange:", exchange)
                 return exchange ;
                 
             } catch (err) {
@@ -94,23 +88,19 @@ const resolvers = {
                 console.error(err)
             }
         },
-        addUserToExchange: async (parent, args) => {
+        joinExchange: async (parent, args, context) => {
             try {
-                const user = await User.findById(args.userId);
-                const exchange = await Exchange.findOneAndUpdate({id: args.exchangeId}, {$push: {users: user}}, {new:true})
+                console.log("trying to join! on backend--- here look at context.user:", context.user)
+                const exchange = await Exchange.findOneAndUpdate({roomName: args.roomName, passphrase: args.passphrase}, {$push: {users: context.user}}, {new:true})
                 return exchange;
             } catch(err) {
-                console.error(err)
+                console.error(err);
+                alert("Invalid Room or Passphrase!");
             }
-            // const exchange = await Exchange.findById(args.exchangeId);
-            // const user = await User.findById(args.userId);
-
-            // exchange.update({}, {$set: {users: [...users, user]}})
-            // return exchange;
         },
         removeFromExchange: async(parent, args) => {
             try {
-                await Exchange.findOneAndUpdate({id: args.exhangeId}, {$pull: {users: {id: args.userId}} }, {new:true})
+                await Exchange.findOneAndUpdate({id: args.exhangeId, passphrase: args.passphrase}, {$pull: {users: {id: args.userId}} }, {new:true})
             } catch (err) {
                 console.error(err)
             }

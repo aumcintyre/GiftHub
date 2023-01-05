@@ -47,13 +47,32 @@ export const ADD_EXCHANGE = gql`
             passphrase: $passphrase
             ) {
                 _id
-                roomName
                 passphrase
-                creatorID
+                roomName
                 users {
                     _id
                     username
             }
         }
       }
+`;
+
+export const JOIN_EXCHANGE = gql`
+    mutation joinExchange(
+        $roomName: String!
+        $passphrase: String!
+        ) {
+        joinExchange(
+            roomName: $roomName
+            passphrase: $passphrase
+            ) {
+                _id
+                passphrase
+                roomName
+                users {
+                    _id
+                    username
+            }
+        }
+    }
 `;
