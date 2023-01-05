@@ -184,12 +184,12 @@ form {
 .nav {
   display: flex;
   justify-content: center;
+  float: right;
   list-style: none;
 }
 
 .custom-nav {
   display: flex;
-  justify-content: center;
   border-style: solid;
   border-top: 0px;
   border-left: 0px;
@@ -198,6 +198,9 @@ form {
   background-color: var(--primary-color);
   border-radius: 10px;
   width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  justify-content: center;
 }
 
 .btn-one {

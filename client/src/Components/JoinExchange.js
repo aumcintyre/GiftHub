@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert, Card } from 'react-bootstrap/';
 import { useMutation } from "@apollo/client";
-import { ADD_EXCHANGE } from '../utils/mutations';
+import { JOIN_EXCHANGE } from '../utils/mutations';
 
-const ExchangeCreator = () => {
+const ExchangeJoiner = () => {
     const [exchangeData, setExchangeData] = useState({ roomName: '', passphrase: '' });
 
-    const [addExchange, { error }] = useMutation(ADD_EXCHANGE);
+    const [joinExchange, { error }] = useMutation(JOIN_EXCHANGE);
     const [showAlert, setShowAlert] = useState(false);
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -16,12 +16,9 @@ const ExchangeCreator = () => {
     const handleButtonClick = async (e) => {
         e.preventDefault();
 
-        // const newExchange = [...exchangeData];
-        // console.log(newExchange);
-
         try {
-            console.log("TRYING!!!!!");
-            const { data } = await addExchange({
+            console.log("TRYING to join!!!!!");
+            const { data } = await joinExchange({
                 variables: { ...exchangeData }
             });
             console.log('data::::', data)
@@ -90,4 +87,4 @@ const ExchangeCreator = () => {
     );
 
 };
-export default ExchangeCreator;
+export default ExchangeJoiner;

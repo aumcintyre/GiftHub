@@ -19,11 +19,11 @@ class CreateWishlist extends React.Component {
         this.setState({ items: newWish, inputValue: '' });
     }
 
-    // handleRemoveClick = (index) => {
-    //     const newWishes = [...this.state.items]
-    //     newWishes.splice(index, 1)
-    //     this.setState({ items: newWishes })
-    // }
+    handleRemoveClick = (index) => {
+        const newWishes = [...this.state.items]
+        newWishes.splice(index, 1)
+        this.setState({ items: newWishes })
+    }
 
 
 
@@ -38,8 +38,8 @@ class CreateWishlist extends React.Component {
                     <ul className='wishlist-items'>
                         {this.state.items.map((item, index) => (
                             <li key={item}>{item}
-                                {/* <button onClick={() = > 
-            this.handleRemoveClick(index)}>DESTROY</button> */}
+                                <button onClick={() => 
+            this.handleRemoveClick(index)}>DESTROY</button>
                             </li>
                         ))}
                     </ul>

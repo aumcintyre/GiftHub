@@ -4,6 +4,13 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
+        me: async (parent, args, context) => {
+            if (context.user) {
+                const userData = await User.findOne({ _id: context.user._id }).select('-__v -password')
+                return userData;
+            }
+            throw new AuthenticationError('User not logged in!');
+        },
         users: async () => {
             return await User.find({});
         },
@@ -72,7 +79,7 @@ const resolvers = {
                 const exchange = await Exchange.create({
                     roomName: args.roomName,
                     passphrase: args.passphrase,
-                    creatorId: [context.user._id],
+                    creatorId: context.user._id,
                     users: [context.user._id]
                 });
                 return exchange ;
@@ -88,23 +95,18 @@ const resolvers = {
                 console.error(err)
             }
         },
-        addUserToExchange: async (parent, args) => {
+        joinExchange: async (parent, args, context) => {
             try {
-                const user = await User.findById(args.userId);
-                const exchange = await Exchange.findOneAndUpdate({id: args.exchangeId}, {$push: {users: user}}, {new:true})
+                const exchange = await Exchange.findOneAndUpdate({id: args.exchangeId, passphrase: args.passphrase}, {$push: {users: user}}, {new:true})
                 return exchange;
             } catch(err) {
-                console.error(err)
+                console.error(err);
+                alert("Invalid Room or Passphrase!");
             }
-            // const exchange = await Exchange.findById(args.exchangeId);
-            // const user = await User.findById(args.userId);
-
-            // exchange.update({}, {$set: {users: [...users, user]}})
-            // return exchange;
         },
         removeFromExchange: async(parent, args) => {
             try {
-                await Exchange.findOneAndUpdate({id: args.exhangeId}, {$pull: {users: {id: args.userId}} }, {new:true})
+                await Exchange.findOneAndUpdate({id: args.exhangeId, passphrase: args.passphrase}, {$pull: {users: {id: args.userId}} }, {new:true})
             } catch (err) {
                 console.error(err)
             }

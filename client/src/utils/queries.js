@@ -29,3 +29,25 @@ export const GET_EXCHANGES_BY_USER = gql`{
   }
 }
 `;
+
+export const GET_ME = gql`
+{
+    me {
+        _id
+        username
+        email
+        password
+        secretSanta
+        exchanges {
+          _id
+          creatorID
+          passphrase
+          roomName
+          users {
+            username
+            _id
+          }
+        }
+    }
+}
+`;

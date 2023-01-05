@@ -56,3 +56,23 @@ export const ADD_EXCHANGE = gql`
         }
       }
 `;
+
+export const JOIN_EXCHANGE = gql`
+    mutation joinExchange(
+        $roomName: String!
+        $passphrase: String!
+        ) {
+        joinExchange(
+            roomName: $roomName
+            passphrase: $passphrase
+            ) {
+                _id
+                passphrase
+                roomName
+                users {
+                    _id
+                    username
+            }
+        }
+      }
+`;

@@ -30,6 +30,7 @@ const typeDefs = gql
     }
 
     type Query {
+        me: User
         user(_id: ID!): User
         users: [User]
         exchanges: [Exchange]
@@ -43,7 +44,7 @@ const typeDefs = gql
         loginUser(username: String!, password: String!): Auth
         addExchange(roomName: String!, passphrase: String!): Exchange
         deleteExchange(exchangeId: ID!): Exchange
-        addUserToExchange(exchangeId: ID!, userId: ID!): Exchange
+        joinExchange(exchangeId: ID!, userId: ID!): Exchange
         removeFromExchange(exchangeId: ID!, userId: ID!): Exchange
     }
     
