@@ -30,11 +30,6 @@ function Home() {
                     <h1>Create your Wishlist!</h1>
                     <p>Info on Creating Wishlist</p>
                 </Card>
-
-                <Card className='home-card col-3'>
-                    <h1>Create your Wishlist!</h1>
-                    <p>Info on Creating Wishlist</p>
-                </Card>
             </div>
 
         </div>
