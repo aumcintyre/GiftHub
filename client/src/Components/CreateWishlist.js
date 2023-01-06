@@ -4,7 +4,7 @@ import { ADD_WISH } from '../utils/mutations';
 import SavedWishes from './SavedWishes'
 
 function CreateWishlist() {
-    const [addWish] = useMutation(ADD_WISH);
+    const [addWishItem] = useMutation(ADD_WISH);
     const [inputValue, setInputValue] = useState("");
     const [items, setItems] = useState([]);
 
@@ -18,11 +18,12 @@ function CreateWishlist() {
     const handleButtonClick = async (e) => {
         e.preventDefault();
         try {
-            addWish({ variables: { item: inputValue } })
             setInputValue("")
+            addWishItem({ variables: { item: inputValue } })
             const newItems = items.splice(0);
             newItems.push(inputValue)
             setItems(newItems);
+            // consolelog(newItems);
         } catch (err) {
             console.error(err);
 
@@ -50,7 +51,7 @@ function CreateWishlist() {
                     ))}
                 </ul>
             </div>
-            <SavedWishes items={items}/>
+            <SavedWishes items={items} />
         </>
 
     )

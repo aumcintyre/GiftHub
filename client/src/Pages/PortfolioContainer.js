@@ -16,10 +16,10 @@ import { GET_ME } from '../utils/queries';
 
 export default function PortfolioContainer() {
     const [currentPage, setCurrentPage] = useState('Home');
-    
-    const { loading, data }  = useQuery(GET_ME);
+
+    const { loading, data } = useQuery(GET_ME);
     const userData = data?.me || []
-    
+
 
     const renderPage = () => {
         if (currentPage === 'Home') {
@@ -42,9 +42,9 @@ export default function PortfolioContainer() {
         }
         //If you aren't logged in, should you still see this page in the header?
         if (currentPage === 'profilepage') {
-             return <ProfilePage user={userData}/>;
+            return <ProfilePage user={userData} />;
         }
-       
+
         // if (currentPage === 'Contact') {
         //     return <Contact resumeInfo={resumeInfo} />;
         // }
@@ -56,12 +56,11 @@ export default function PortfolioContainer() {
     const handlePageChange = (page) => setCurrentPage(page);
 
     return (
-        <div>
+        <>
             <Header currentPage={currentPage} handlePageChange={handlePageChange} />
-            {renderPage()}
-            {/*   <Footer/> */}
-
-            {/* <Footer resumeInfo={resumeInfo} /> */}
-        </div>
+            <div className='renderPageDiv'>
+                {renderPage()}
+            </div>
+        </>
     );
 }

@@ -16,7 +16,9 @@ const resolvers = {
             return await User.find({});
         },
         user: async (parent, args) => {
-            const user = await User.findById(args.id);
+            console.log("args here!:::", args);
+            const user = await User.findOne({ username: args.username }).populate('wishes');
+            console.log("user prop!!::", user)
             return user;
         },
 
@@ -33,7 +35,7 @@ const resolvers = {
             const exchanges = await Exchange.find({
                 "users": context.user.username
             });
-            console.log("exhcnagebyUSER backend:", exchanges);
+            console.log("exchnagebyUSER backend:", exchanges);
             return exchanges
         }
     },

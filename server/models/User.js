@@ -23,7 +23,7 @@ const userSchema = new Schema(
         },
         exchanges: [
             {
-                type: Schema.Types.ObjectId,
+                type: String,
                 ref: 'Exchange'
             }
         ],

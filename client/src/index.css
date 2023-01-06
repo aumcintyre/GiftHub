@@ -290,7 +290,7 @@ form {
 
 .exchangeContainers {
   margin: auto;
-  width: 50%;
+  width: auto;
   padding: 10px;
   background-color: #FF1414;
   border-radius: 15px;
@@ -307,6 +307,7 @@ form {
   border-radius: 15px;
   display: flex;
   justify-content: center;
+  width: auto;
 }
 
 .exchangeContainersTextArea {
@@ -364,4 +365,23 @@ form {
 ul {
   list-style: none;
 
+}
+
+.exchangeRoomName {
+  display: flex;
+  justify-content: center;
+}
+
+.ExchangeArea {
+
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+
+.renderPageDiv {
+  display: flex;
+  justify-content: center;
+  height: 1000px;
 }
