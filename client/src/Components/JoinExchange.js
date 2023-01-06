@@ -18,6 +18,7 @@ const ExchangeJoiner = () => {
 
         try {
             console.log("TRYING to join!!!!!");
+            console.log("exchangeData:", exchangeData);
             const { data } = await joinExchange({
                 variables: { ...exchangeData }
             });

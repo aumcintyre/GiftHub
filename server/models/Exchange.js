@@ -1,9 +1,9 @@
 const { Schema, model } = require('mongoose');
 
 const exchangeSchema = new Schema(
-    {   
-        
-        creatorID:{
+    {
+
+        creatorID: {
             type: Schema.Types.ObjectId,
             ref: 'User',
             required: true
@@ -18,8 +18,9 @@ const exchangeSchema = new Schema(
         },
         users: [
             {
-                type: Schema.Types.ObjectId,
-                ref: 'User'
+                type: String,
+                required: false,
+                // ref: 'User'
             }
         ],
 

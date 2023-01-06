@@ -27,6 +27,12 @@ const userSchema = new Schema(
                 ref: 'Exchange'
             }
         ],
+        wishes: [
+            {
+                type: String,
+                required: false,
+            }
+        ]
         // }
         // TODO: WISHLIST schema
     },

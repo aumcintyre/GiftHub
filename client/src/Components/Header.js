@@ -52,57 +52,60 @@ function Header({ currentPage, handlePageChange }) {
 
       <div className="custom-nav">
         {/* <img src={process.env.PUBLIC_URL + "./images/GiftHubTitle.png"} /> */}
-        <img src={TitleImg} className='title-image' />
+        <div className='title-image'>
+          <img src={TitleImg} />
+        </div>
         {/* <img className='myPic' src={require("./images/GiftHubTitle.png")} /> */}
-        <DropdownButton className='nav-dropdown' title='Menu' variant='success'>
-          <Container>
-            <div className={currentPage === 'Home' ? 'nav-active' : 'nav-inactive'}>
-              <Dropdown.Item ><a href='#home' onClick={() => handlePageChange('Home')} >Home</a></Dropdown.Item>
-            </div>
-            {Auth.loggedIn() ? (
-              <>
-              </>
-            ) : (
-              <div className={currentPage === 'Login' ? 'nav-active' : 'nav-inactive'}>
-                <Dropdown.Item><a href='#login' onClick={() => handlePageChange('Login')}>Login</a></Dropdown.Item>
+        <div className='nav-dropdown'>
+          <DropdownButton title='Menu' variant='success' size='lg'>
+            <Container>
+              <div className={currentPage === 'Home' ? 'nav-active' : 'nav-inactive'}>
+                <Dropdown.Item ><a href='#home' onClick={() => handlePageChange('Home')} >Home</a></Dropdown.Item>
               </div>
-            )}
-
-            {Auth.loggedIn() ? (
-              <>
-              </>
-            ) : (
-              <>
-                <div className={currentPage === 'signUp' ? 'nav-active' : 'nav-inactive'}>
-                  <Dropdown.Item ><a href='#signup' onClick={() => handlePageChange('signUp')}>Sign Up</a></Dropdown.Item>
+              {Auth.loggedIn() ? (
+                <>
+                </>
+              ) : (
+                <div className={currentPage === 'Login' ? 'nav-active' : 'nav-inactive'}>
+                  <Dropdown.Item><a href='#login' onClick={() => handlePageChange('Login')}>Login</a></Dropdown.Item>
                 </div>
-              </>
-            )}
+              )}
 
-            <div className={currentPage === 'createExchange' ? 'nav-active' : 'nav-inactive'}>
-              <Dropdown.Item ><a href='#createexchange' onClick={() => handlePageChange('createExchange')}>Create Exchange</a></Dropdown.Item>
-            </div>
+              {Auth.loggedIn() ? (
+                <>
+                </>
+              ) : (
+                <>
+                  <div className={currentPage === 'signUp' ? 'nav-active' : 'nav-inactive'}>
+                    <Dropdown.Item ><a href='#signup' onClick={() => handlePageChange('signUp')}>Sign Up</a></Dropdown.Item>
+                  </div>
+                </>
+              )}
 
-            <div className={currentPage === 'joinExchange' ? 'nav-active' : 'nav-inactive'}>
-              <Dropdown.Item ><a href='#joinexchange' onClick={() => handlePageChange('joinExchange')}>Join Exchange</a></Dropdown.Item>
-            </div>
+              <div className={currentPage === 'createExchange' ? 'nav-active' : 'nav-inactive'}>
+                <Dropdown.Item ><a href='#createexchange' onClick={() => handlePageChange('createExchange')}>Create Exchange</a></Dropdown.Item>
+              </div>
 
-            <div className={currentPage === 'profilepage' ? 'nav-active' : 'nav-inactive'}>
-              <Dropdown.Item ><a href='#profile' onClick={() => handlePageChange('profilepage')}>Profile</a></Dropdown.Item>
-            </div>
-            <Dropdown.Item className={currentPage === 'exchange' ? 'nav-active' : 'nav-inactive'}><a href='#exchange' onClick={() => handlePageChange('exchange')}>Exchange</a></Dropdown.Item>
-            {Auth.loggedIn() ? (
-              <>
-                <div>
-                  <Dropdown.Item className='nav-inactive'><a href='#logout' onClick={() => Auth.logout()}>Logout</a></Dropdown.Item>
-                </div>
-              </>
-            ) : (
-              <></>
-            )}
-          </Container>
-        </DropdownButton>
+              <div className={currentPage === 'joinExchange' ? 'nav-active' : 'nav-inactive'}>
+                <Dropdown.Item ><a href='#joinexchange' onClick={() => handlePageChange('joinExchange')}>Join Exchange</a></Dropdown.Item>
+              </div>
 
+              <div className={currentPage === 'profilepage' ? 'nav-active' : 'nav-inactive'}>
+                <Dropdown.Item ><a href='#profile' onClick={() => handlePageChange('profilepage')}>Profile</a></Dropdown.Item>
+              </div>
+              <Dropdown.Item className={currentPage === 'exchange' ? 'nav-active' : 'nav-inactive'}><a href='#exchange' onClick={() => handlePageChange('exchange')}>Exchange</a></Dropdown.Item>
+              {Auth.loggedIn() ? (
+                <>
+                  <div>
+                    <Dropdown.Item className='nav-inactive'><a href='#logout' onClick={() => Auth.logout()}>Logout</a></Dropdown.Item>
+                  </div>
+                </>
+              ) : (
+                <></>
+              )}
+            </Container>
+          </DropdownButton>
+        </div>
       </div>
     </>
   );

@@ -43,7 +43,7 @@ function ProfilePage(props) {
                 {/* <p>{user.Wishlist}</p> */}
             </div>
             <button onClick={() => setShowWishCreator(true)}>Make your wishlist!</button>
-            {/* {showWishCreator && <CreateWishlist />} */}
+            {showWishCreator && <CreateWishlist />}
             <Exchange />
         </div>
     )

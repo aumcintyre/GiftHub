@@ -31,15 +31,46 @@ form {
 }
 
 .title-image {
-  height: 50%;
-  width: 50%;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .nav-dropdown {
-  display: block;
-  float: right;
-  margin-right: 15px;
+  position: fixed;
+  top: 25px;
+  right: 10px;
+}
+
+.home-container {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+}
+
+.home-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 45px;
+  background-color: antiquewhite;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.home-box {
+  display: flex;
+  padding: 15px;
+  margin-top: 25px;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: 80%;
 }
 
 .nav-active {
@@ -167,8 +198,9 @@ form {
   padding: 10px;
   border: 1px solid white;
   font-size: 16px;
-  border-top-right-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
+  /* border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem; */
+  border-radius: 8px;
 }
 
 .profileSearchBar button {
@@ -179,6 +211,8 @@ form {
   color: white;
   font-size: 16px;
   cursor: pointer;
+  margin-top: -3px;
+  margin-left: -90px
 }
 
 .wishlist {
@@ -224,7 +258,7 @@ form {
 
 .custom-nav {
   display: block;
-  height: 60px;
+  height: 100px;
   border-style: solid;
   border-top: 0px;
   border-left: 0px;
@@ -239,11 +273,11 @@ form {
 
 .btn-one {
   align-items: center;
-  background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
-  border: 0;
+  background-image: linear-gradient(144deg, #FF1414, #74D680 50%, #C6EFFF);
+  color: black;
+  font-weight: 200;
   border-radius: 8px;
   box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-  color: #FFFFFF;
   display: flex;
   float: right;
   font-size: 15px;
@@ -258,13 +292,43 @@ form {
   margin: auto;
   width: 50%;
   padding: 10px;
-  background-color: rgb(252, 143, 0);
-
+  background-color: #FF1414;
   border-radius: 15px;
+  top: 50%;
+  left: 50%;
+}
+
+.exchangeContainersTitle {
+  margin: auto;
+  padding: 10px;
+  background-color: #74D680;
+  color: black;
+  font-style: bold;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.exchangeContainersTextArea {
+  padding: 10px;
+  margin: auto;
+  background-color: #C6EFFF;
+  justify-content: space-around;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-around;
+  align-items: center;
+}
+
+.card {
+  background-color: #1874CD;
 }
 
 .card-body {
-  background-color: black;
+  background-color: antiquewhite;
 }
 
 .gradiant {
@@ -283,7 +347,21 @@ form {
   height: auto;
   padding: 10px;
   margin: 10px;
-  background-color: White;
+  background-color: #74D680;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.custom-card {
+  background-color: antiquewhite;
+  color: black;
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  list-style: none;
 
 }

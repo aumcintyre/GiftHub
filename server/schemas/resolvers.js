@@ -75,16 +75,12 @@ const resolvers = {
             }
         },
         addWishItem: async (parent, args, context) => {
-            console.log("user prop:  ", context.user)
+            console.log("user prop:  ", user)
             try {
-                const addWishItem = await Wish.create({
-                    item: args.item,
-                    owner: context.user
-                });
-                return addWishItem;
-
+                const user = await User.findOneAndUpdate({ username: context.user.username }, { $push: { wishes: args.item } }, { new: true })
+                return user;
             } catch (err) {
-                console.error(err);
+                console.error(err)
             }
         },
         addExchange: async (parent, args, context) => {
@@ -112,7 +108,7 @@ const resolvers = {
         joinExchange: async (parent, args, context) => {
             try {
                 console.log("trying to join! on backend--- here look at context.user:", context.user)
-                const exchange = await Exchange.findOneAndUpdate({ roomName: args.roomName, passphrase: args.passphrase }, { $push: { users: context.user } }, { new: true })
+                const exchange = await Exchange.findOneAndUpdate({ roomName: args.roomName, passphrase: args.passphrase }, { $push: { users: context.user.username } }, { new: true })
                 return exchange;
             } catch (err) {
                 console.error(err);
