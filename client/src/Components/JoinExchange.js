@@ -25,7 +25,7 @@ const ExchangeJoiner = () => {
             console.log('data::::', data)
 
         } catch (err) {
-            console.error(error);
+            console.error(err);
             setShowAlert(true);
         }
 
