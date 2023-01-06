@@ -1,2 +1,2 @@
 # GiftHub
-## Project 3 Team 1 - GiftHub
+## Santas Little Helpers - GiftHub
