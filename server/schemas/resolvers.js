@@ -29,9 +29,11 @@ const resolvers = {
             return exchange;
         },
         exchangeByUser: async (parent, args, context) => {
+            console.log("here look its context.user", context.user);
             const exchanges = await Exchange.find({
-                "users.user._id": context.user._id
+                "users": context.user.username
             });
+            console.log("exhcnagebyUSER backend:", exchanges);
             return exchanges
         }
     },
@@ -106,6 +108,9 @@ const resolvers = {
             }
         },
         joinExchange: async (parent, args, context) => {
+            console.log("here look its context.user", context.user);
+            context.user.secretSanta = "Brian";
+
             try {
                 console.log("trying to join! on backend--- here look at context.user:", context.user)
                 const exchange = await Exchange.findOneAndUpdate({ roomName: args.roomName, passphrase: args.passphrase }, { $push: { users: context.user.username } }, { new: true })

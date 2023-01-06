@@ -6,12 +6,9 @@ export const GET_EXCHANGES = gql`{
   exchanges {
     _id
     creatorID
-    passphrase
     roomName
-    users {
-      username
-      _id
-    }
+    passphrase
+    users
   }
 }
 `;
@@ -20,12 +17,9 @@ export const GET_EXCHANGES_BY_USER = gql`{
   exchangeByUser {
     _id
     creatorID
-    passphrase
     roomName
-    users {
-      username
-      _id
-    }
+    passphrase
+    users
   }
 }
 `;

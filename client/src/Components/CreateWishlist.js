@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from "@apollo/client";
 import { ADD_WISH } from '../utils/mutations';
+import SavedWishes from './SavedWishes'
 
 function CreateWishlist() {
     const [addWish] = useMutation(ADD_WISH);
@@ -49,6 +50,7 @@ function CreateWishlist() {
                     ))}
                 </ul>
             </div>
+            <SavedWishes items={items}/>
         </>
 
     )
