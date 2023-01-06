@@ -15,16 +15,16 @@ function ProfilePage(props) {
     const { user } = props
     const [showWishCreator, setShowWishCreator] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
-    
+
     const handleSearchChange = event => {
         setSearchTerm(event.target.value)
     }
-    
+
     const handleSearchSubmit = event => {
         event.preventDefault()
     }
-    
-    
+
+
     console.log(props);
     console.log(user);
 
@@ -43,7 +43,7 @@ function ProfilePage(props) {
                 {/* <p>{user.Wishlist}</p> */}
             </div>
             <button onClick={() => setShowWishCreator(true)}>Make your wishlist!</button>
-            {showWishCreator && <CreateWishlist />}
+            {/* {showWishCreator && <CreateWishlist />} */}
             <Exchange />
         </div>
     )

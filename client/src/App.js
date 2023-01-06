@@ -17,7 +17,6 @@ import SignupForm from './Components/SignupForm';
 import PortfolioContainer from './Pages/PortfolioContainer'
 import LoginForm from "./Components/LoginForm";
 import Header from './Components/Header';
-import CreateWishlist from './Components/CreateWishlist';
 import CreateExchange from './Components/CreateExchange';
 import ExchangeCalendar from './Components/Calender';
 import SimpleCard from './Components/Gallery';
@@ -51,9 +50,9 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      
-       <PortfolioContainer />
-       
+
+      <PortfolioContainer />
+
     </ApolloProvider>
   );
 }

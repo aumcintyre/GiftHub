@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 
 import React from 'react';
 import { GET_EXCHANGES_BY_USER } from '../utils/queries';
-import CreateWishlist from './CreateWishlist';
+// import CreateWishlist from './CreateWishlist';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 import TitleImg from '../images/GiftHubTitle.png'

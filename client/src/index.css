@@ -30,6 +30,12 @@ form {
 
 }
 
+.title-image {
+  height: 50%;
+  width: 50%;
+  justify-content: center;
+}
+
 .nav-dropdown {
   display: block;
   float: right;

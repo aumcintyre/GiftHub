@@ -1,6 +1,7 @@
 {
     "name": "gift-hub-server",
     "version": "1.0.0",
+    "proxy": "http://localhost:3001/",
     "description": "back-end directory for gift-hub",
     "main": "server.js",
     "scripts": {
