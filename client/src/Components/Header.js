@@ -12,7 +12,9 @@ function Header({ currentPage, handlePageChange }) {
       <div className="custom-nav">
         {/* <img src={process.env.PUBLIC_URL + "./images/GiftHubTitle.png"} /> */}
         <div className='title-image'>
-          <img src={TitleImg} />
+          <a href='#home' onClick={() => handlePageChange('Home')}>
+            <img src={TitleImg} />
+          </a>
         </div>
         {/* <img className='myPic' src={require("./images/GiftHubTitle.png")} /> */}
         <div className='nav-dropdown'>
