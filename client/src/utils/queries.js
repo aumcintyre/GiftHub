@@ -45,3 +45,13 @@ export const GET_ME = gql`
     }
 }
 `;
+
+export const GET_USER = gql`
+query Query($username: String!) {
+  user(username: $username) {
+    email
+    username
+    wishes
+    _id
+  }
+}`

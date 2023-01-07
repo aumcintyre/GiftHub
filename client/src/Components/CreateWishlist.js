@@ -51,7 +51,7 @@ function CreateWishlist() {
                     ))}
                 </ul>
             </div>
-            <SavedWishes items={items} />
+            {/* <SavedWishes items={items} /> */}
         </>
 
     )
