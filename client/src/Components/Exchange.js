@@ -19,41 +19,44 @@ function Exchange() {
   }
   console.log("look at your exchanges:", exchanges)
 
+
   return (
-    <div className='ExchangeArea'>
 
-      {/* User*/}
-      <div className='exchangeContainers'>
 
-        {
-          exchanges && exchanges.map((exchange) => {
+
+
+    <div>
+
+
+      <div>
+        <div>
+
+          {exchanges && exchanges.map((exchange) => {
             return (
-              <div>
-                <div className='exchangeContainers'>
-                  <h1 className='exchangeContainersTitle'>{exchange.roomName.toUpperCase()}</h1>
-                  {exchanges && exchanges.map((exchange) => {
-                    return (
-                      <div className='GifteeMemberCard'>
-                        {exchange.users.map((user) => (
-                          <div className='GifteeMembers'>
-                            <p>{user}</p>
-                            {/* <SavedWishes items={user.wishes} /> */}
-                          </div>
-                        ))}
-                      </div>
-
-
-
-                    )
-                  })
-                  }
+              <div className='exchangeContainers'>
+                <h1 className='exchangeContainersTitle'>{exchange.roomName.toUpperCase()}</h1>
+                <div className='GifteeMemberCard'>
+                  {exchange.users.map((user) => (
+                    <div className='GifteeMembers'>
+                      <p>{user}</p>
+                      {/* <SavedWishes items={user.wishes} /> */}
+                    </div>
+                  ))}
                 </div>
+
               </div>
+
+
             )
           })
-        }
+          }
+        </div>
       </div>
-    </div >
+
+
+
+    </div>
+
 
   );
 }

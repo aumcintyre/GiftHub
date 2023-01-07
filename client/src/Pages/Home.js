@@ -1,9 +1,11 @@
 import { Form, Button, Alert, Card } from 'react-bootstrap';
+import React from 'react';
+import Auth from '../utils/auth';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 
-function Home() {
+function Home({ currentPage, handlePageChange }) {
     return (
         <div >
             <div className='home-container'>
@@ -16,20 +18,78 @@ function Home() {
 
             </div>
             <div className='row home-container'>
-                <Card className='home-card col-3'>
-                    <h1>Create Account/Login</h1>
-                    <p>Once you create an account, you will be able to start creating gift exchanges right away! If you have been invited to an exchange, please navigate to 'Join Exchange' in the top right of your page!</p>
-                </Card>
 
-                <Card className='home-card col-3'>
-                    <h1>Create/Join Exchange</h1>
-                    <p>Info on Creating Exchanges</p>
-                </Card>
+                {Auth.loggedIn() ? (
+                    <>
+                    </>
+                ) : (
+                    <>
 
-                <Card className='home-card col-3'>
-                    <h1>Create your Wishlist!</h1>
-                    <p>Info on Creating Wishlist</p>
-                </Card>
+                        <Card className='home-card col-5'>
+                            <a href='#signup' onClick={() => handlePageChange('signUp')} className='text-center'>
+                                <h1>Create Account</h1>
+                                <p>Once you create an account, you will be able to start creating gift exchanges right away!</p>
+                            </a>
+                        </Card>
+                    </>
+                )}
+
+                {Auth.loggedIn() ? (
+                    <>
+                    </>
+                ) : (
+                    <>
+                        <Card className='home-card col-5'>
+                            <a href='#login' onClick={() => handlePageChange('Login')} className='text-center'>
+                                <h1>Login</h1>
+                                <p>Login to your account. Once logged in, you can create your own exchanges, or join someone else's</p>
+                            </a>
+                        </Card>
+                    </>
+                )}
+
+                {Auth.loggedIn() ? (
+                    <>
+                        <Card className='home-card col-5'>
+                            <h1>Your Profile</h1>
+                            <p>Once you create an account, you will be able to start creating gift exchanges right away! If you have been invited to an exchange, please navigate to 'Join Exchange' in the top right of your page!</p>
+                        </Card>
+                    </>
+                ) : (
+                    <>
+
+                    </>
+                )}
+
+                {Auth.loggedIn() ? (
+                    <>
+                        <Card className='home-card col-5'>
+                            <h1>Create a new Exchange</h1>
+                            <p>Create an exchange of your own. Once you name your exchange and give it a passphrase, anyone you want can join you!</p>
+                        </Card>
+                    </>
+                ) : (
+                    <>
+                    </>
+                )}
+
+                {Auth.loggedIn() ? (
+                    <>
+                        <Card className='home-card col-5'>
+                            <h1>Join an Exchange</h1>
+                            <p>Already have a passphrase? Join your exchange here!</p>
+                        </Card>
+                    </>
+                ) : (
+                    <>
+                    </>
+                )}
+
+
+
+
+
+
             </div>
 
         </div>
