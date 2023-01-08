@@ -4,12 +4,16 @@ import { GET_USER } from '../utils/queries';
 
 function SavedWishes({ user }) {
     console.log(user);
-    const { data } = useQuery(GET_USER, { variables: { username: user }, });
+    const { loading, data } = useQuery(GET_USER, { variables: { username: user }, });
     console.log(data);
 
-    let wishArray = data.user.wishes;
+    const wishArray = data?.user.wishes || {};
+
     console.log(wishArray);
 
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className='saved-wishes'>
