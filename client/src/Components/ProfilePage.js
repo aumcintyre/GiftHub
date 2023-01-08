@@ -25,8 +25,8 @@ function ProfilePage(props) {
     }
 
 
-    console.log(props);
-    console.log(user);
+    console.log("profile page line 18 props:", props);
+    console.log("profule page line 29 user:", user);
 
     return (
         <div className="profile-page">

@@ -18,6 +18,7 @@ export default function PortfolioContainer() {
     const [currentPage, setCurrentPage] = useState('Home');
 
     const { loading, data } = useQuery(GET_ME);
+    console.log("port container line 21 data:", data)
     const userData = data?.me || []
     const handlePageChange = (page) => setCurrentPage(page);
 

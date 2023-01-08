@@ -1,8 +1,14 @@
 import React from 'react';
+import { useQuery } from '@apollo/client';
+import { GET_USER } from '../utils/queries';
 
+function SavedWishes({ user }) {
+    console.log(user);
+    const { data } = useQuery(GET_USER, { variables: { username: user }, });
+    console.log(data);
 
-function SavedWishes({items}) {
-
+    let wishArray = data.user.wishes;
+    console.log(wishArray);
 
 
     return (
@@ -10,10 +16,10 @@ function SavedWishes({items}) {
             <h3>Wishlist</h3>
 
                {
-               items.map((item, index) => { 
+               wishArray.map((wish, index) => { 
                 
                 return (
-                    <p key={item}>{item}</p>
+                    <p key={index}>{wish}</p>
                 )})}
 
         </div>

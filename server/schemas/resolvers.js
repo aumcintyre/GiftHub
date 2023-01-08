@@ -6,6 +6,7 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
+            console.log("we've hit the ME route... touchdown!");
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id }).select('-__v -password')
                 return userData;
@@ -79,7 +80,9 @@ const resolvers = {
             }
         },
         addWishItem: async (parent, args, context) => {
-            console.log("user prop:  ", user, "args:::", args)
+
+            console.log("user prop:  ", context.user)
+
             try {
                 const user = await User.findOneAndUpdate({ username: context.user.username }, { $push: { wishes: args.item } }, { new: true })
                 return user;
