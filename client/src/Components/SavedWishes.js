@@ -15,12 +15,13 @@ function SavedWishes({ user }) {
         <div className='saved-wishes'>
             <h3>Wishlist</h3>
 
-               {
-               wishArray.map((wish, index) => { 
-                
-                return (
-                    <p key={index}>{wish}</p>
-                )})}
+            {
+                wishArray.map((wish, index) => {
+
+                    return (
+                        <p key={index}>{wish}</p>
+                    )
+                })}
 
         </div>
     )

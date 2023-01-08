@@ -18,7 +18,6 @@ import PortfolioContainer from './Pages/PortfolioContainer'
 import LoginForm from "./Components/LoginForm";
 import Header from './Components/Header';
 import CreateExchange from './Components/CreateExchange';
-import ExchangeCalendar from './Components/Calender';
 import SimpleCard from './Components/Gallery';
 import Exchange from './Components/Exchange';
 

@@ -41,7 +41,6 @@ query user($username: String!) {
     _id
     username
     email
-    secretSantaId
     wishes
   }
 }

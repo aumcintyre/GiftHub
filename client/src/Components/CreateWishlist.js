@@ -40,13 +40,13 @@ function CreateWishlist() {
     return (
         <>
             <div className='wishlist'>
-                <input value={inputValue} onChange={handleInputChange} />
+                <input value={inputValue} placeholder="Add to your wishlist" onChange={handleInputChange} />
                 <button onClick={handleButtonClick}>Add Wish</button>
                 <ul className='wishlist-items'>
                     {items.map((item, index) => (
                         <li key={item}>{item}
                             <button onClick={() =>
-                                handleRemoveClick(index)}>DESTROY</button>
+                                handleRemoveClick(index)}>Delete</button>
                         </li>
                     ))}
                 </ul>

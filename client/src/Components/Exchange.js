@@ -22,9 +22,6 @@ function Exchange() {
 
   return (
 
-
-
-
     <div>
 
 
@@ -39,7 +36,7 @@ function Exchange() {
                   {exchange.users.map((user) => (
                     <div className='GifteeMembers'>
                       <p>{user}</p>
-//                       {<SavedWishes user={user} />}
+                      {/* {<SavedWishes user={user} />} */}
                     </div>
                   ))}
 

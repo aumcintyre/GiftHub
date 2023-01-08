@@ -19,10 +19,10 @@ function Header({ currentPage, handlePageChange }) {
         {/* <img className='myPic' src={require("./images/GiftHubTitle.png")} /> */}
         <div className='nav-dropdown'>
           <DropdownButton title='Menu' variant='success' size='lg'>
-            <Container >
+            <Container ><a href='#home' onClick={() => handlePageChange('Home')} >
               <div className={currentPage === 'Home' ? 'nav-active' : 'nav-inactive'}>
-                <Dropdown.Item ><a href='#home' onClick={() => handlePageChange('Home')} >Home</a></Dropdown.Item>
-              </div>
+                <Dropdown.Item >Home</Dropdown.Item>
+              </div></a>
               {Auth.loggedIn() ? (
                 <>
                 </>
