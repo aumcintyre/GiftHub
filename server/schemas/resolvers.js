@@ -80,7 +80,9 @@ const resolvers = {
             }
         },
         addWishItem: async (parent, args, context) => {
+
             console.log("user prop:  ", context.user)
+
             try {
                 const user = await User.findOneAndUpdate({ username: context.user.username }, { $push: { wishes: args.item } }, { new: true })
                 return user;

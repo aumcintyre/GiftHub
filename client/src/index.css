@@ -16,6 +16,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  overflow: auto;
 }
 
 * {
@@ -41,6 +42,12 @@ form {
   position: fixed;
   top: 25px;
   right: 10px;
+  z-index: 1000;
+}
+
+.dropdown-menu {
+  border: #860000;
+  border-width: 3px;
 }
 
 .home-container {
@@ -59,6 +66,11 @@ form {
   background-color: antiquewhite;
 }
 
+.home-card a {
+  color: black;
+  text-decoration: none;
+}
+
 .text-center {
   text-align: center;
 }
@@ -70,7 +82,7 @@ form {
   align-items: center;
   align-content: center;
   justify-content: center;
-  width: 50%;
+  width: 30%;
 }
 
 .nav-active {
@@ -253,7 +265,7 @@ form {
   display: flex;
   justify-content: center;
   float: right;
-  list-style: none;
+  width: 100%;
 }
 
 .custom-nav {
@@ -266,7 +278,7 @@ form {
   border-color: antiquewhite;
   background-color: var(--primary-color);
   /* border-radius: 10px; */
-  width: 100%;
+  width: auto;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -289,19 +301,23 @@ form {
 }
 
 .exchangeContainers {
-  margin: auto;
+  margin: 50px;
   width: auto;
+  max-width: 1000px;
   padding: 10px;
-  background-color: #FF1414;
+  background-color: var(--primary-color);
+  color: white;
   border-radius: 15px;
   top: 50%;
   left: 50%;
+  border-style: double;
+  border-color: antiquewhite;
 }
 
 .exchangeContainersTitle {
   margin: auto;
   padding: 10px;
-  background-color: #74D680;
+  background-color: antiquewhite;
   color: black;
   font-style: bold;
   border-radius: 15px;
@@ -344,11 +360,11 @@ form {
 }
 
 .GifteeMembers {
-  width: auto;
+  width: 100px;
   height: auto;
   padding: 10px;
   margin: 10px;
-  background-color: #74D680;
+  background-color: #860000;
   border-radius: 10px;
   display: flex;
   justify-content: center;

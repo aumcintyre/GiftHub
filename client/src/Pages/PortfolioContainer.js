@@ -20,11 +20,11 @@ export default function PortfolioContainer() {
     const { loading, data } = useQuery(GET_ME);
     console.log("port container line 21 data:", data)
     const userData = data?.me || []
-
+    const handlePageChange = (page) => setCurrentPage(page);
 
     const renderPage = () => {
         if (currentPage === 'Home') {
-            return <Home />;
+            return <Home currentPage={currentPage} handlePageChange={handlePageChange} />;
         }
         if (currentPage === 'Login') {
             return <LoginForm />;
@@ -54,7 +54,7 @@ export default function PortfolioContainer() {
         // }
     };
 
-    const handlePageChange = (page) => setCurrentPage(page);
+
 
     return (
         <>

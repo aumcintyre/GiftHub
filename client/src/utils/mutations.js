@@ -62,14 +62,6 @@ export const JOIN_EXCHANGE = gql`
 `;
 
 
-// export const ADD_WISH = gql`
-// mutation addWishItem($item: String!, $userId: ID!) {
-//     addWishItem(item: $item, userId: $userId) {
-//       item
-//     }
-//   }
-// `;
-
 
 export const ADD_WISH = gql`
 mutation addWishItem($item: String!) {
