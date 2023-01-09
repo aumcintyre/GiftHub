@@ -22,57 +22,13 @@ function SavedWishes({ user }) {
     if (loading) {
         return <div>Loading...</div>;
     }
-
-    // return (
-    //     <div className='saved-wishes'>
-    //         <h3>Wishlist</h3>
-
-    //         {
-    //             wishArray.map((wish, index) => {
-
-    //                 return (
-    //                     // <p key={index}>{wish}</p>
-    //                     <>
-    //                         <Button variant="primary" onClick={handleShow}>
-    //                             View {data.user.username}'s Wishes!
-    //                         </Button>
-
-    //                         <Modal show={show} onHide={handleClose}>
-    //                             <Modal.Header closeButton>
-    //                                 <Modal.Title>{data.user.username}'s Wishes:</Modal.Title>
-    //                             </Modal.Header>
-    //                             <Modal.Body>
-    //                                 <ul>
-    //                                     <li key={index}>{wish}</li>
-    //                                 </ul>
-    //                             </Modal.Body>
-    //                             <Modal.Footer>
-    //                                 <Button variant="secondary" onClick={handleClose}>
-    //                                     Close
-    //                                 </Button>
-
-    //                             </Modal.Footer>
-    //                         </Modal>
-    //                     </>
-
-    //                 )
-    //             })}
-
-    //     </div>
-    // )
-
-
-
-
-
     return (
-        // <p key={index}>{wish}</p>
         <>
-            <Button variant="primary" onClick={handleShow}>
-                View Wishlist!
+            <Button variant="success" onClick={handleShow}>
+                {data.user.username}
             </Button>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} className='modal-dialog-centered'>
                 <Modal.Header closeButton>
                     <Modal.Title>{data.user.username}'s Wishes:</Modal.Title>
                 </Modal.Header>

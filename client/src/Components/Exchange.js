@@ -26,19 +26,21 @@ function Exchange() {
 
 
       <div>
-        <div>
+        <div className='row'>
 
           {exchanges && exchanges.map((exchange) => {
             return (
-              <div className='exchangeContainers'>
+              <div className='exchangeContainers col-8'>
                 <h1 className='exchangeContainersTitle'>{exchange.roomName.toUpperCase()}</h1>
                 <div className='GifteeMemberCard'>
                   {exchange.users.map((user) => (
                     <div className='GifteeMembers'>
                       <div className='member-container'>
-                        <h2 className=''>{user}</h2>
+                        {/* <h4 className=''>{user}</h4> */}
                         {<SavedWishes user={user} />}
+
                       </div>
+
                     </div>
                   ))}
 
@@ -54,7 +56,7 @@ function Exchange() {
       </div>
 
 
-
+      <hr className='card-break'></hr>
     </div>
 
 

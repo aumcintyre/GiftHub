@@ -5,6 +5,8 @@ import CreateWishlist from "./CreateWishlist"
 import Exchange from './Exchange';
 import SavedWishes from './SavedWishes';
 import Button from 'react-bootstrap/Button';
+import { useMutation } from "@apollo/client";
+import { REMOVE_WISH } from '../utils/mutations';
 
 function ProfilePage(props) {
     const { user } = props
@@ -19,15 +21,47 @@ function ProfilePage(props) {
         event.preventDefault()
     }
 
-
     const wishArray = user.wishes || {};
-
     console.log(wishArray);
 
+    const [deleteWishItem, { error }] = useMutation(REMOVE_WISH);
 
     console.log("profile page line 18 props:", props);
     console.log("profule page line 29 user:", user);
 
+
+
+
+
+    // ============================================================================
+
+
+
+
+
+    const HandleDeleteWishItem = async (wish) => {
+        try {
+            const { data } = await deleteWishItem({
+                variables: { wish },
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ======================================================================
     return (
         <div className="profile-page">
             {/* //     <form className="profileSearchBar" onSubmit={handleSearchSubmit}>
@@ -46,14 +80,14 @@ function ProfilePage(props) {
                     wishArray.map((wish, index) => {
                         return (
                             <ul>
-                                <Button>
+                                <Button onClick={(e) => HandleDeleteWishItem(wish)}>
                                     <li key={index}>{wish}</li>
                                 </Button>
                             </ul>
                         )
                     })}
             </div>
-            <button className='show-wish-creator-btn' onClick={() => setShowWishCreator(true)}>Add to your wishlist!</button>
+            <button className='btn btn-success' onClick={() => setShowWishCreator(true)}>Add to your wishlist!</button>
             {showWishCreator && <CreateWishlist />}
         </div >
     )

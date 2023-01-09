@@ -47,6 +47,7 @@ const typeDefs = gql
         deleteExchange(exchangeId: ID!): Exchange
         joinExchange(roomName: String!, passphrase: String!): Exchange
         removeFromExchange(exchangeId: ID!, userId: ID!): Exchange
+        removeWish(wish: String!): User
     }
     
     

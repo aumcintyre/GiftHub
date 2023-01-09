@@ -25,12 +25,12 @@ function Home({ currentPage, handlePageChange }) {
                 ) : (
                     <>
 
-                        <Card className='home-card col-5'>
+                        <div className='home-card col-5'>
                             <a href='#signup' onClick={() => handlePageChange('signUp')} className='text-center'>
                                 <h1>Create Account</h1>
                                 <p>Once you create an account, you will be able to start creating gift exchanges right away!</p>
                             </a>
-                        </Card>
+                        </div>
                     </>
                 )}
 
@@ -39,21 +39,23 @@ function Home({ currentPage, handlePageChange }) {
                     </>
                 ) : (
                     <>
-                        <Card className='home-card col-5'>
+                        <div className='home-card col-5'>
                             <a href='#login' onClick={() => handlePageChange('Login')} className='text-center'>
                                 <h1>Login</h1>
                                 <p>Login to your account. Once logged in, you can create your own exchanges, or join someone else's</p>
                             </a>
-                        </Card>
+                        </div>
                     </>
                 )}
 
                 {Auth.loggedIn() ? (
                     <>
-                        <Card className='home-card col-5'>
-                            <h1>Your Profile</h1>
-                            <p>Once you create an account, you will be able to start creating gift exchanges right away! If you have been invited to an exchange, please navigate to 'Join Exchange' in the top right of your page!</p>
-                        </Card>
+                        <div className='home-card col-md-5 col-xs-3'>
+                            <a href='#profile' onClick={() => handlePageChange('profilepage')} className='text-center'>
+                                <h1>Your Profile</h1>
+                                <p>Once you create an account, you will be able to start creating gift exchanges right away! If you have been invited to an exchange, please navigate to 'Join Exchange' in the top right of your page!</p>
+                            </a>
+                        </div>
                     </>
                 ) : (
                     <>
@@ -63,10 +65,10 @@ function Home({ currentPage, handlePageChange }) {
 
                 {Auth.loggedIn() ? (
                     <>
-                        <Card className='home-card col-5'>
+                        <div className='home-card col-md-5 col-xs-3'>
                             <h1>Create a new Exchange</h1>
                             <p>Create an exchange of your own. Once you name your exchange and give it a passphrase, anyone you want can join you!</p>
-                        </Card>
+                        </div>
                     </>
                 ) : (
                     <>
@@ -75,10 +77,10 @@ function Home({ currentPage, handlePageChange }) {
 
                 {Auth.loggedIn() ? (
                     <>
-                        <Card className='home-card col-5'>
+                        <div className='home-card col-md-5 col-xs-3'>
                             <h1>Join an Exchange</h1>
                             <p>Already have a passphrase? Join your exchange here!</p>
-                        </Card>
+                        </div>
                     </>
                 ) : (
                     <>

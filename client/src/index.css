@@ -59,15 +59,28 @@ form {
 }
 
 .home-card {
-  display: flex;
+  display: inline-flexbox;
   align-items: center;
+  min-height: 150px;
+  text-align: center;
   justify-content: center;
+  align-content: center;
   margin: 45px;
-  background-color: antiquewhite;
+  background-color: #860000;
+  color: white;
+  border-radius: 15px;
+  border-style: double;
+  border-color: antiquewhite;
+  padding: 20px;
 }
 
 .home-card a {
-  color: black;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+.home-card a:hover {
+  color: var(--primary-color);
   text-decoration: none;
 }
 
@@ -112,6 +125,7 @@ form {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 
 
 }
@@ -119,16 +133,15 @@ form {
 .center-form {
   display: flex;
   align-items: center;
+  margin: 25px;
   justify-content: center;
-  background: transparent;
 }
 
 .center-box {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80vh;
-  width: 100%;
+  height: 50vh;
 }
 
 
@@ -325,10 +338,19 @@ form {
   margin-top: 20px
 }
 
+.card-break {
+  color: white;
+  border-style: solid;
+  border-width: 3px;
+  border: #FFFFFF;
+}
+
 .exchangeContainers {
-  margin: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
   width: auto;
-  max-width: 1000px;
   padding: 10px;
   background-color: var(--primary-color);
   color: white;
@@ -428,8 +450,8 @@ ul {
   padding: 10px;
 }
 
-.renderPageDiv {
+/* .renderPageDiv {
   display: flex;
   justify-content: center;
   height: 1000px;
-}
+} */

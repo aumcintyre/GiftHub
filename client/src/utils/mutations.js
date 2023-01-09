@@ -72,3 +72,13 @@ mutation addWishItem($item: String!) {
     }
   }
 `;
+
+export const REMOVE_WISH = gql`
+  mutation Mutation($wish: String!) {
+    removeWish(wish: $wish) {
+      email
+      username
+      wishes
+    }
+  }
+`;

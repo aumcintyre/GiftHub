@@ -90,6 +90,18 @@ const resolvers = {
                 console.error(err)
             }
         },
+        removeWish: async (parent, { wish }, context) => {
+            console.log("HITTING REMOVE WISH RESOLVE weeeeeeeeeeee!!!!");
+            console.log(wish);
+            if (context.user) {
+                return User.findOneAndUpdate(
+                    { username: context.user.username },
+                    { $pull: { wishes: wish } },
+                    { new: true }
+                );
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
         addExchange: async (parent, args, context) => {
             console.log("user prop:  ", context.user)
             try {
