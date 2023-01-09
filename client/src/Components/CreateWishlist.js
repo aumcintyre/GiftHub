@@ -41,7 +41,7 @@ function CreateWishlist() {
         <>
             <div className='wishlist'>
                 <input value={inputValue} placeholder="Add to your wishlist" onChange={handleInputChange} />
-                <button onClick={handleButtonClick}>Add Wish</button>
+                <button className='add-wish-btn' onClick={handleButtonClick}>Add Wish</button>
                 <ul className='wishlist-items'>
                     {items.map((item, index) => (
                         <li key={item}>{item}

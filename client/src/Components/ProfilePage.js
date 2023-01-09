@@ -3,6 +3,8 @@ import { useState } from 'react';
 // import { Form, Button, Alert } from 'react-bootstrap/';
 import CreateWishlist from "./CreateWishlist"
 import Exchange from './Exchange';
+import SavedWishes from './SavedWishes';
+import Button from 'react-bootstrap/Button';
 
 function ProfilePage(props) {
     const { user } = props
@@ -16,6 +18,11 @@ function ProfilePage(props) {
     const handleSearchSubmit = event => {
         event.preventDefault()
     }
+
+
+    const wishArray = user.wishes || {};
+
+    console.log(wishArray);
 
 
     console.log("profile page line 18 props:", props);
@@ -32,10 +39,21 @@ function ProfilePage(props) {
         //         <button type="submit">Search</button>
         //     </form> */}
             <div className='profilePageUser'>
-                <h1 > {props.user.username}'s Profile</h1>
-                {/* <p>{user.Wishlist}</p> */}
+                <h1 > {props.user.username}'s profile</h1>
             </div>
-            <button onClick={() => setShowWishCreator(true)}>Make your wishlist!</button>
+            <div className='old-wishes'>
+                {
+                    wishArray.map((wish, index) => {
+                        return (
+                            <ul>
+                                <Button>
+                                    <li key={index}>{wish}</li>
+                                </Button>
+                            </ul>
+                        )
+                    })}
+            </div>
+            <button className='show-wish-creator-btn' onClick={() => setShowWishCreator(true)}>Add to your wishlist!</button>
             {showWishCreator && <CreateWishlist />}
         </div >
     )

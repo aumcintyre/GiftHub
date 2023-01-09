@@ -163,24 +163,27 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
+  /* background-color: white; */
+  height: min-content;
 
 }
 
 .profilePageUser {
-  background-color: gray;
+  background-color: whitesmoke;
   width: 50%;
   height: auto;
-  border-radius: 15px;
+  border-radius: 10px;
   margin: 10px;
-  padding: 10px;
+  padding: 10px 40px 10px;
   display: flex;
   justify-content: center;
 }
 
 .profile-page h1 {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-style: italic;
 }
 
 .profile-page p {
@@ -241,11 +244,16 @@ form {
 }
 
 .wishlist {
+  display: flex;
+  flex-flow: column nowrap;
   list-style: none;
   margin: 2px;
   padding: 2px;
   color: red;
+}
 
+.old-wishes {
+  background-color: whitesmoke;
 }
 
 .wishlist li {
@@ -329,6 +337,13 @@ form {
   left: 50%;
   border-style: double;
   border-color: antiquewhite;
+}
+
+.member-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .exchangeContainersTitle {
