@@ -72,7 +72,7 @@ form {
 }
 
 .home-card {
-  display: inline-flexbox;
+  display: inline-flex;
   align-items: center;
   min-height: 150px;
   text-align: center;
@@ -186,7 +186,7 @@ form {
 }
 
 .footer-text {
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: bold;
 
 }
@@ -205,7 +205,7 @@ form {
 }
 
 .profilePageUser {
-  background-color: whitesmoke;
+  background-color: #860000;
   width: 50%;
   height: auto;
   border-radius: 10px;
@@ -213,6 +213,9 @@ form {
   padding: 10px 40px 10px;
   display: flex;
   justify-content: center;
+  color: white;
+  border-width: 15px;
+
 }
 
 .profile-page h1 {
@@ -222,12 +225,12 @@ form {
   font-style: italic;
 }
 
-.profile-page p {
+/* .profile-page p {
   font-size: 16px;
   margin-bottom: 10px;
-}
+} */
 
-.profile-page button {
+/* .profile-page button {
   align-items: center;
   background-image: linear-gradient(144deg, #FF1414, #74D680 50%, #C6EFFF);
   border: 0;
@@ -242,7 +245,7 @@ form {
   min-width: auto;
   padding: 8px 10px;
   margin-top: 20px
-}
+} */
 
 .profileSearchBar {
   display: flex;
@@ -325,7 +328,7 @@ form {
 }
 
 .nav {
-  display: flex;
+  display: fixed;
   justify-content: center;
   float: right;
   width: 100%;
@@ -433,13 +436,16 @@ form {
 
 .GifteeMemberCard {
   width: auto;
-  display: flex;
+  display: block;
   justify-content: center;
+}
 
+.giftee-btn {
+  min-width: 150px;
 }
 
 .GifteeMembers {
-  width: 100px;
+  width: auto;
   height: auto;
   padding: 10px;
   margin: 10px;
@@ -493,12 +499,16 @@ form {
   display: flex;
   justify-content: center;
   width: 400px;
+  border: var(--tertiary-color);
+  border-width: 15px;
+  border-style: double;
 }
 
 .exhangePageTitleDiv {
   margin: auto;
   display: flex;
   justify-content: center;
+
 }
 
 .snow {
@@ -520,4 +530,11 @@ form {
 .btn {
   margin: 10px;
   padding: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .footer-text {
+    font-size: 10px;
+    text-align: center;
+  }
 }

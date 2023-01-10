@@ -23,8 +23,8 @@ function SavedWishes({ user }) {
         return <div>Loading...</div>;
     }
     return (
-        <>
-            <Button variant="success" onClick={handleShow}>
+        <div className='row'>
+            <Button variant="success" onClick={handleShow} className='giftee-btn'>
                 {data.user.username}
             </Button>
 
@@ -48,7 +48,7 @@ function SavedWishes({ user }) {
                     </Button>
                 </Modal.Footer>
             </Modal>
-        </>
+        </div>
 
     )
 

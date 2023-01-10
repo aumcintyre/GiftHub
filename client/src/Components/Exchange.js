@@ -24,8 +24,11 @@ function Exchange() {
 
     <div>
 
-      <div className="exhangePageTitleDiv">
-        <h1 className="exhangePageTitle "> Exchanges: </h1>
+      <div className="exhangePageTitleDiv exchangePageTitle">
+        <div className="exhangePageTitle text-center" style={{ display: 'block' }}>
+          <h1 > Exchanges: </h1>
+          <p >Simply click on a user's name to see their wishlist!</p>
+        </div>
       </div>
 
 
@@ -38,7 +41,7 @@ function Exchange() {
                 <h1 className='exchangeContainersTitle'>{exchange.roomName.toUpperCase()}</h1>
                 <div className='GifteeMemberCard'>
                   {exchange.users.map((user) => (
-                    <div className='GifteeMembers'>
+                    <div className='GifteeMembers' >
                       <div className='member-container'>
                         {/* <h4 className=''>{user}</h4> */}
                         {<SavedWishes user={user} />}

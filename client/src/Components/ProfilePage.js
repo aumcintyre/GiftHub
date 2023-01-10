@@ -64,14 +64,6 @@ function ProfilePage(props) {
     // ======================================================================
     return (
         <div className="profile-page">
-            {/* //     <form className="profileSearchBar" onSubmit={handleSearchSubmit}>
-        //         <input */}
-            {/* //             type="text"
-        //             placeholder="search here for presents"
-        //             value={searchTerm}
-        //             onChange={handleSearchChange} />
-        //         <button type="submit">Search</button>
-        //     </form> */}
             <div className='profilePageUser'>
                 <h1 > {props.user.username}'s profile</h1>
 
@@ -87,9 +79,9 @@ function ProfilePage(props) {
                             <div>
 
 
-                                <Button key={index} onClick={(e) => HandleDeleteWishItem(wish)}>
+                                <button key={index} onClick={(e) => HandleDeleteWishItem(wish)} className='btn btn-success'>
                                     {wish}
-                                </Button>
+                                </button>
 
                             </div>
                         )

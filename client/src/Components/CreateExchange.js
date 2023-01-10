@@ -44,7 +44,7 @@ const CreateExchange = ({ currentPage, handlePageChange }) => {
     return (
         <div className='row'>
 
-            <div className='center-box '>
+            <div className='center-box' style={{ marginTop: '150px' }} >
                 <div className='col-7 home-card'>
 
                     <Form onSubmit={handleButtonClick} >
@@ -53,7 +53,7 @@ const CreateExchange = ({ currentPage, handlePageChange }) => {
                             Something went wrong with your new exchange!
                         </Alert>
                         <h1> New Room </h1>
-                        <h3>Here you can create your own gift exchange room with a private passphrase that will link you and your friends together</h3>
+                        <h5>Here you can create your own gift exchange room with a private passphrase that will link you and your friends together</h5>
                         <Form.Group className='center-form'>
                             <Form.Label htmlFor='roomName'></Form.Label>
                             <Form.Control
@@ -94,7 +94,7 @@ const CreateExchange = ({ currentPage, handlePageChange }) => {
 
                 </div>
             </div>
-        </div>
+        </div >
 
 
     );
