@@ -38,6 +38,14 @@ Contributor Covenant, as described at [the Contributor Covenant website](https:/
 ## Tests
 
 screenshots below
+![image](https://user-images.githubusercontent.com/109123352/211441319-44bba877-97d0-4d12-8f40-0cbed9539252.png)
+
+![image](https://user-images.githubusercontent.com/109123352/211441361-67fd1ee8-6375-49ba-a498-6676dc5d5f48.png)
+
+![image](https://user-images.githubusercontent.com/109123352/211441389-30766ee6-58e2-49cd-bd72-7802b3e71cec.png)
+
+
+
 
 ## Questions
 
