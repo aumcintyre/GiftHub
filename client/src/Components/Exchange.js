@@ -24,6 +24,10 @@ function Exchange() {
 
     <div>
 
+      <div className="exhangePageTitleDiv">
+        <h1 className="exhangePageTitle "> Exchanges: </h1>
+      </div>
+
 
       <div>
         <div className='row'>

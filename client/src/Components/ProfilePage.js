@@ -74,20 +74,28 @@ function ProfilePage(props) {
         //     </form> */}
             <div className='profilePageUser'>
                 <h1 > {props.user.username}'s profile</h1>
+
+
             </div>
-            <div className='old-wishes'>
+
+            <button className='btn btn-success' onClick={() => setShowWishCreator(true)}>Add to your wishlist!</button>
+
+            <div className='wishListCotainer'>
                 {
                     wishArray.map((wish, index) => {
                         return (
-                            <ul>
-                                <Button onClick={(e) => HandleDeleteWishItem(wish)}>
-                                    <li key={index}>{wish}</li>
+                            <div>
+
+
+                                <Button key={index} onClick={(e) => HandleDeleteWishItem(wish)}>
+                                    {wish}
                                 </Button>
-                            </ul>
+
+                            </div>
                         )
                     })}
             </div>
-            <button className='btn btn-success' onClick={() => setShowWishCreator(true)}>Add to your wishlist!</button>
+
             {showWishCreator && <CreateWishlist />}
         </div >
     )

@@ -6,7 +6,7 @@
 :root {
   --primary-color: #00171f;
   --secondary-color: #00a7e1;
-  --tertiary-color: #ffffff,
+  --tertiary-color: #860000,
 }
 
 
@@ -55,7 +55,20 @@ form {
   display: flex;
   justify-content: center;
   align-content: center;
+  margin: 50px;
+}
 
+.home-image {
+  width: 200px;
+  height: auto;
+}
+
+.home-image-container {
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .home-card {
@@ -156,11 +169,12 @@ form {
   display: flex;
   position: fixed;
   padding: 10px 10px 0px 10px;
-  background-color: var(--secondary-color);
+  background-color: #860000;
   bottom: 0;
+  color: white;
   width: 100%;
   /* Height of the footer*/
-  height: 60px;
+  height: 40px;
   /* flex-direction: column; */
   align-items: center;
   justify-content: center;
@@ -169,7 +183,16 @@ form {
   border-bottom: 0px;
   border-left: 0px;
   border-right: 0px;
-  border-radius: 10px;
+}
+
+.footer-text {
+  font-size: 1.2em;
+  font-weight: bold;
+
+}
+
+.github-link {
+  color: white;
 }
 
 .profile-page {
@@ -266,7 +289,9 @@ form {
 }
 
 .old-wishes {
-  background-color: whitesmoke;
+  background-color: transparent;
+  display: flex;
+
 }
 
 .wishlist li {
@@ -432,10 +457,10 @@ form {
   justify-content: center;
 }
 
-ul {
+/* ul {
   list-style: none;
 
-}
+} */
 
 .exchangeRoomName {
   display: flex;
@@ -455,3 +480,44 @@ ul {
   justify-content: center;
   height: 1000px;
 } */
+
+
+.exhangePageTitle {
+  margin: 15px;
+  padding: 10px;
+  left: 50%;
+  background-color: antiquewhite;
+  color: black;
+  font-style: bold;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  width: 400px;
+}
+
+.exhangePageTitleDiv {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.snow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.wishListCotainer {
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+}
+
+.btn {
+  margin: 10px;
+  padding: 10px;
+}

@@ -9,7 +9,7 @@ function SavedWishes({ user }) {
     const { loading, data } = useQuery(GET_USER, { variables: { username: user }, });
     console.log(data);
 
-    const wishArray = data?.user.wishes || {};
+    const wishArray = data?.user.wishes || [];
 
     console.log(wishArray);
 

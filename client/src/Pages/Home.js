@@ -3,6 +3,7 @@ import React from 'react';
 import Auth from '../utils/auth';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import TreeImg from "../images/xmas-tree.png"
 
 
 function Home({ currentPage, handlePageChange }) {
@@ -10,11 +11,11 @@ function Home({ currentPage, handlePageChange }) {
         <div >
             <div className='home-container'>
 
-                <Card className='text-center home-box'>
+                {/* <Card className='text-center home-box'>
                     <h1>Welcome to GiftHub!</h1>
                     <hr></hr>
                     <h3>Features:</h3>
-                </Card>
+                </Card> */}
 
             </div>
             <div className='row home-container'>
@@ -66,8 +67,10 @@ function Home({ currentPage, handlePageChange }) {
                 {Auth.loggedIn() ? (
                     <>
                         <div className='home-card col-md-5 col-xs-3'>
-                            <h1>Create a new Exchange</h1>
-                            <p>Create an exchange of your own. Once you name your exchange and give it a passphrase, anyone you want can join you!</p>
+                            <a href='#createexchange' onClick={() => handlePageChange('createExchange')} className='text-center'>
+                                <h1>Create a new Exchange</h1>
+                                <p>Create an exchange of your own. Once you name your exchange and give it a passphrase, anyone you want can join you!</p>
+                            </a>
                         </div>
                     </>
                 ) : (
@@ -78,8 +81,10 @@ function Home({ currentPage, handlePageChange }) {
                 {Auth.loggedIn() ? (
                     <>
                         <div className='home-card col-md-5 col-xs-3'>
-                            <h1>Join an Exchange</h1>
-                            <p>Already have a passphrase? Join your exchange here!</p>
+                            <a href='#joinexchange' onClick={() => handlePageChange('joinExchange')} className='text-center'>
+                                <h1>Join an Exchange</h1>
+                                <p>Already have a passphrase? Join your exchange here!</p>
+                            </a>
                         </div>
                     </>
                 ) : (
@@ -87,13 +92,10 @@ function Home({ currentPage, handlePageChange }) {
                     </>
                 )}
 
-
-
-
-
-
+                <div className='home-image-container'>
+                    <img src={TreeImg} className='home-image' />
+                </div>
             </div>
-
         </div>
 
 

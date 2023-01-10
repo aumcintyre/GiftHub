@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import LoginForm from '../Components/LoginForm';
 import SignupForm from '../Components/SignupForm';
 import Header from '../Components/Header';
-import Home from './Home'
-import Footer from '../Components/Footer'
-import CreateExchange from '../Components/CreateExchange'
-import JoinExchange from '../Components/JoinExchange'
-import Gallery from '../Components/Gallery';
+import Home from './Home';
+import Footer from '../Components/Footer';
+import CreateExchange from '../Components/CreateExchange';
+import JoinExchange from '../Components/JoinExchange';
 import ProfilePage from '../Components/ProfilePage';
 import Exchange from '../Components/Exchange';
 import { useQuery } from '@apollo/client';
@@ -46,22 +45,19 @@ export default function PortfolioContainer() {
             return <ProfilePage user={userData} />;
         }
 
-        // if (currentPage === 'Contact') {
-        //     return <Contact resumeInfo={resumeInfo} />;
-        // }
-        // if (currentPage === 'Resume') {
-        //     return <Resume resumeInfo={resumeInfo} />;
-        // }
-    };
 
+    };
 
 
     return (
         <>
+
             <Header currentPage={currentPage} handlePageChange={handlePageChange} />
+
             <div>
                 {renderPage()}
             </div>
+            <Footer />
         </>
     );
 }
