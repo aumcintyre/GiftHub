@@ -49,6 +49,7 @@ const ExchangeJoiner = () => {
                         </Alert>
                         <h1> Join an Exchange </h1>
                         <h5>If you have been invited to another user's exchange, please enter the room name and the passphrase here!</h5>
+                        <h6>Room names and passphrases are case sensitive</h6>
                         <Form.Group className='center-form'>
                             <Form.Label htmlFor='roomName'></Form.Label>
                             <Form.Control

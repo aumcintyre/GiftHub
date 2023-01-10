@@ -38,6 +38,11 @@ form {
   align-content: center;
 }
 
+.create-link {
+  color: #09ff00;
+  text-decoration: underline;
+}
+
 .nav-dropdown {
   position: fixed;
   top: 25px;
@@ -87,12 +92,33 @@ form {
   padding: 20px;
 }
 
+.login-card {
+  display: inline-flex;
+  align-items: center;
+  min-height: 150px;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  margin: 45px;
+  background-color: #860000;
+  color: white;
+  border-radius: 15px;
+  border-style: double;
+  border-color: antiquewhite;
+  padding: 20px;
+}
+
 .home-card a {
   color: rgb(255, 255, 255);
   text-decoration: none;
 }
 
 .home-card a:hover {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.login-card a:hover {
   color: var(--primary-color);
   text-decoration: none;
 }
