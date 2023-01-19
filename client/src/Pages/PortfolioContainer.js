@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import LoginForm from '../Components/LoginForm';
 import SignupForm from '../Components/SignupForm';
 import Header from '../Components/Header';
-import Home from './Home'
-import Footer from '../Components/Footer'
-import CreateExchange from '../Components/CreateExchange'
-import JoinExchange from '../Components/JoinExchange'
-import Gallery from '../Components/Gallery';
+import Home from './Home';
+import Footer from '../Components/Footer';
+import CreateExchange from '../Components/CreateExchange';
+import JoinExchange from '../Components/JoinExchange';
 import ProfilePage from '../Components/ProfilePage';
 import Exchange from '../Components/Exchange';
 import { useQuery } from '@apollo/client';
@@ -16,14 +15,15 @@ import { GET_ME } from '../utils/queries';
 
 export default function PortfolioContainer() {
     const [currentPage, setCurrentPage] = useState('Home');
-    
-    const { loading, data }  = useQuery(GET_ME);
+
+    const { loading, data } = useQuery(GET_ME);
+    console.log("port container line 21 data:", data)
     const userData = data?.me || []
-    
+    const handlePageChange = (page) => setCurrentPage(page);
 
     const renderPage = () => {
         if (currentPage === 'Home') {
-            return <Home />;
+            return <Home currentPage={currentPage} handlePageChange={handlePageChange} />;
         }
         if (currentPage === 'Login') {
             return <LoginForm />;
@@ -42,26 +42,22 @@ export default function PortfolioContainer() {
         }
         //If you aren't logged in, should you still see this page in the header?
         if (currentPage === 'profilepage') {
-             return <ProfilePage user={userData}/>;
+            return <ProfilePage user={userData} />;
         }
-       
-        // if (currentPage === 'Contact') {
-        //     return <Contact resumeInfo={resumeInfo} />;
-        // }
-        // if (currentPage === 'Resume') {
-        //     return <Resume resumeInfo={resumeInfo} />;
-        // }
+
+
     };
 
-    const handlePageChange = (page) => setCurrentPage(page);
 
     return (
-        <div>
-            <Header currentPage={currentPage} handlePageChange={handlePageChange} />
-            {renderPage()}
-            {/*   <Footer/> */}
+        <>
 
-            {/* <Footer resumeInfo={resumeInfo} /> */}
-        </div>
+            <Header currentPage={currentPage} handlePageChange={handlePageChange} />
+
+            <div>
+                {renderPage()}
+            </div>
+            <Footer />
+        </>
     );
 }

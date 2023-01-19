@@ -17,5 +17,7 @@
     "@babel/core": "^7.20.5",
     "concurrently": "^5.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react": "^0.14.10"
+  }
 }

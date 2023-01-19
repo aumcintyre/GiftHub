@@ -1,56 +1,71 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { useQuery } from '@apollo/client';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-
-
+import SavedWishes from './SavedWishes';
 import React from 'react';
-import { GET_EXCHANGES_BY_USER } from '../utils/queries';
-import CreateWishlist from './CreateWishlist';
+import { GET_EXCHANGES_BY_USER, GET_EXCHANGES, GET_USER } from '../utils/queries';
+// import CreateWishlist from './CreateWishlist';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 import TitleImg from '../images/GiftHubTitle.png'
 
 function Exchange() {
+  const { data } = useQuery(GET_EXCHANGES_BY_USER);
+  // const { data } = useQuery(GET_EXCHANGES);
+  console.log(data);
+  let exchanges;
+  if (data) {
+    exchanges = data.exchangeByUser;
+  }
+  console.log("look at your exchanges:", exchanges)
+
+
   return (
-    <div className='leftSide'>
 
-      <div className='GifteeMemberCard'>
-        <div className="GifteeMembers">
-          <p> John</p>
-        </div>
+    <div>
 
-        <div className="GifteeMembers">
-          <p> John</p>
-        </div>
-
-        <div className="GifteeMembers">
-          <p> John</p>
+      <div className="exhangePageTitleDiv exchangePageTitle">
+        <div className="exhangePageTitle text-center" style={{ display: 'block' }}>
+          <h1 > Exchanges: </h1>
+          <p >Simply click on a user's name to see their wishlist!</p>
         </div>
       </div>
 
-      <Row xs={1} md={2} className="g-4">
 
-        {/* User*/}
-        <div className='exchangeContainers'>
-          <Col>
-            <Card className="gradiant" >
-              {/* <img className='myPic' src={require('../images/GiftHubTitle.png')} /> */}
-              <Card.Title class='text-black'>THE USER WHO YOU GOT</Card.Title>
-              <Card.Text class='text-black'>
-                The Exchange you are apart of
-                <ul>
-                  <li>Thir wishlist that links to the page where you can buy it</li>
-                  <li> <a href='https://www.amazon.com'>Link to their amazon wishlist item</a></li>
-                  <li> <a href='https://www.target.com'>Or a link to a different amazon item </a></li>
-                </ul>
-              </Card.Text>
-            </Card>
-          </Col>
+      <div>
+        <div className='row'>
+
+          {exchanges && exchanges.map((exchange) => {
+            return (
+              <div className='exchangeContainers col-8'>
+                <h1 className='exchangeContainersTitle'>{exchange.roomName.toUpperCase()}</h1>
+                <div className='GifteeMemberCard'>
+                  {exchange.users.map((user) => (
+                    <div className='GifteeMembers' >
+                      <div className='member-container'>
+                        {/* <h4 className=''>{user}</h4> */}
+                        {<SavedWishes user={user} />}
+
+                      </div>
+
+                    </div>
+                  ))}
+
+                </div>
+
+              </div>
+
+
+            )
+          })
+          }
         </div>
-      </Row>
+      </div>
+
+
+      <hr className='card-break'></hr>
     </div>
+
 
   );
 }

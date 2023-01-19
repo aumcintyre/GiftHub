@@ -3,7 +3,7 @@ import React from "react";
 // import { SignupForm } from "../src/Components/SignupForm.js";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Snowfall from 'react-snowfall'
 import {
   ApolloClient,
   InMemoryCache,
@@ -17,9 +17,7 @@ import SignupForm from './Components/SignupForm';
 import PortfolioContainer from './Pages/PortfolioContainer'
 import LoginForm from "./Components/LoginForm";
 import Header from './Components/Header';
-import CreateWishlist from './Components/CreateWishlist';
 import CreateExchange from './Components/CreateExchange';
-import ExchangeCalendar from './Components/Calender';
 import SimpleCard from './Components/Gallery';
 import Exchange from './Components/Exchange';
 
@@ -50,11 +48,23 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      
-       <PortfolioContainer />
-       
-    </ApolloProvider>
+    <>
+      <Snowfall
+        style={{
+          postion: 'fixed',
+          width: '100vw',
+          height: '100vh'
+        }}
+
+        snowflakeCount={200}
+      />
+      <ApolloProvider client={client}>
+
+        <PortfolioContainer />
+
+      </ApolloProvider>
+
+    </>
   );
 }
 

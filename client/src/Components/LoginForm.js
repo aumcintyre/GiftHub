@@ -7,7 +7,7 @@ import { LOGIN_USER } from '../utils/mutations';
 import Card from 'react-bootstrap/Card';
 
 
-const LoginForm = () => {
+const LoginForm = ({ currentPage, handlePageChange }) => {
     const [userFormData, setUserFormData] = useState({ username: '', password: '' });
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
@@ -30,7 +30,7 @@ const LoginForm = () => {
         }
 
         try {
-            const response = await loginUser({
+            const { data } = await loginUser({
                 variables: { ...userFormData }
             });
 
@@ -39,9 +39,7 @@ const LoginForm = () => {
             //     throw new Error('something went wrong!');
             // }
 
-            const { token, user } = response;
-            console.log(user);
-            Auth.login(token);
+            Auth.login(data.loginUser.token);
         } catch (err) {
             console.error(err);
             setShowAlert(true);
@@ -55,56 +53,57 @@ const LoginForm = () => {
     };
 
     return (
-        <>
+        <div className='row'>
             <div className='center-box'>
-                <Card style={{ width: '18rem' }}>
-                    <Card.Body>
-                        {/* This is needed for the validation functionality above */}
-                        <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-                            {/* show alert if server response is bad */}
-                            {/* <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                <div className='col-7 login-card'>
+
+                    {/* This is needed for the validation functionality above */}
+                    <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+                        {/* show alert if server response is bad */}
+                        {/* <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                             Something went wrong with your signup!
                         </Alert> */}
-                            <h1> Login </h1>
-                            <Form.Group>
-                                <Form.Label htmlFor='username'>Username</Form.Label>
-                                <Form.Control
-                                    type='text'
-                                    className='form-field'
-                                    placeholder='Your username'
-                                    name='username'
-                                    onChange={handleInputChange}
-                                    value={userFormData.username}
-                                    required
-                                />
-                                <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
-                            </Form.Group>
+                        <h1> Login </h1>
+                        <p>Login to your existing account. If you need to create an account, please click here: <a href='#signUp' onClick={() => handlePageChange('signUp')} className='create-link'>Create Account</a></p>
+                        <Form.Group className='center-form'>
+                            <Form.Label htmlFor='username'></Form.Label>
+                            <Form.Control
+                                type='text'
+                                className='form-field'
+                                placeholder='Your username'
+                                name='username'
+                                onChange={handleInputChange}
+                                value={userFormData.username}
+                                required
+                            />
+                            <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
+                        </Form.Group>
 
 
-                            <Form.Group>
-                                <Form.Label htmlFor='password'>Password</Form.Label>
-                                <Form.Control
-                                    type='password'
-                                    className='form-field'
-                                    placeholder='Your password'
-                                    name='password'
-                                    onChange={handleInputChange}
-                                    value={userFormData.password}
-                                    required
-                                />
-                                <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
-                            </Form.Group>
-                            <button class='btn-one'
-                                disabled={!(userFormData.username && userFormData.password)}
-                                type='submit'
-                                variant='success'>
-                                Login
-                            </button>
-                        </Form>
-                    </Card.Body>
-                </Card>
+                        <Form.Group className='center-form'>
+                            <Form.Label htmlFor='password'></Form.Label>
+                            <Form.Control
+                                type='password'
+                                className='form-field'
+                                placeholder='Your password'
+                                name='password'
+                                onChange={handleInputChange}
+                                value={userFormData.password}
+                                required
+                            />
+                            <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
+                        </Form.Group>
+                        <button class='btn btn-success'
+                            disabled={!(userFormData.username && userFormData.password)}
+                            type='submit'
+                            variant='success'>
+                            Login
+                        </button>
+                    </Form>
+
+                </div>
             </div>
-        </>
+        </div>
     );
 };
 

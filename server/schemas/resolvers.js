@@ -1,11 +1,12 @@
 const { User, Wish, Exchange } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const { default: CreateWishlist } = require('../../client/src/Components/CreateWishlist');
+
 
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
+            console.log("we've hit the ME route... touchdown!");
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id }).select('-__v -password')
                 return userData;
@@ -16,7 +17,9 @@ const resolvers = {
             return await User.find({});
         },
         user: async (parent, args) => {
-            const user = await User.findById(args.id);
+            console.log("args here!:::", args);
+            const user = await User.findOne({ username: args.username }).populate('wishes');
+            console.log("user prop!!::", user)
             return user;
         },
 
@@ -28,10 +31,12 @@ const resolvers = {
             const exchange = await Exchange.findById(args.id);
             return exchange;
         },
-        exchangeByUser: async(parent, args, context) => {
+        exchangeByUser: async (parent, args, context) => {
+            console.log("here look its context.user", context.user);
             const exchanges = await Exchange.find({
-                "users.user._id": context.user._id
+                "users": context.user.username
             });
+            console.log("exchnagebyUSER backend:", exchanges);
             return exchanges
         }
     },
@@ -75,17 +80,27 @@ const resolvers = {
             }
         },
         addWishItem: async (parent, args, context) => {
+
             console.log("user prop:  ", context.user)
+
             try {
-                const addWishItem = await CreateWishlist.create({
-                    item: args.item,
-                    owner: context.user
-                });
-                return addWishItem ;
-                
+                const user = await User.findOneAndUpdate({ username: context.user.username }, { $push: { wishes: args.item } }, { new: true })
+                return user;
             } catch (err) {
-                console.error(err); 
+                console.error(err)
             }
+        },
+        removeWish: async (parent, { wish }, context) => {
+            console.log("HITTING REMOVE WISH RESOLVE weeeeeeeeeeee!!!!");
+            console.log(wish);
+            if (context.user) {
+                return User.findOneAndUpdate(
+                    { username: context.user.username },
+                    { $pull: { wishes: wish } },
+                    { new: true }
+                );
+            }
+            throw new AuthenticationError('You need to be logged in!');
         },
         addExchange: async (parent, args, context) => {
             console.log("user prop:  ", context.user)
@@ -96,13 +111,13 @@ const resolvers = {
                     creatorID: context.user._id,
                     users: [context.user.username]
                 });
-                return exchange ;
-                
+                return exchange;
+
             } catch (err) {
-                console.error(err); 
+                console.error(err);
             }
         },
-        deleteExchange: async(parent, args) => {
+        deleteExchange: async (parent, args) => {
             try {
                 return Exchange.findByIdAndDelete(args.exchangeId)
             } catch (err) {
@@ -110,18 +125,21 @@ const resolvers = {
             }
         },
         joinExchange: async (parent, args, context) => {
+            console.log("here look its context.user", context.user);
+            context.user.secretSanta = "Brian";
+
             try {
                 console.log("trying to join! on backend--- here look at context.user:", context.user)
-                const exchange = await Exchange.findOneAndUpdate({roomName: args.roomName, passphrase: args.passphrase}, {$push: {users: context.user}}, {new:true})
+                const exchange = await Exchange.findOneAndUpdate({ roomName: args.roomName, passphrase: args.passphrase }, { $push: { users: context.user.username } }, { new: true })
                 return exchange;
-            } catch(err) {
+            } catch (err) {
                 console.error(err);
                 alert("Invalid Room or Passphrase!");
             }
         },
-        removeFromExchange: async(parent, args) => {
+        removeFromExchange: async (parent, args) => {
             try {
-                await Exchange.findOneAndUpdate({id: args.exhangeId, passphrase: args.passphrase}, {$pull: {users: {id: args.userId}} }, {new:true})
+                await Exchange.findOneAndUpdate({ id: args.exhangeId, passphrase: args.passphrase }, { $pull: { users: { id: args.userId } } }, { new: true })
             } catch (err) {
                 console.error(err)
             }

@@ -2,11 +2,10 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql
 
-`
+    `
     type Wish {
         _id: ID
-        itemName: String!
-        owner: [User]
+        item: String!
     }
 
     type Exchange {
@@ -14,7 +13,7 @@ const typeDefs = gql
         creatorID: ID
         roomName: String
         passphrase: String
-        users: [User]
+        users: [String]
     }
     type User {
         _id: ID
@@ -22,6 +21,7 @@ const typeDefs = gql
         email: String
         secretSantaId: ID
         exchange: [Exchange]
+        wishes: [String]
     }
 
     type Auth {
@@ -31,7 +31,7 @@ const typeDefs = gql
 
     type Query {
         me: User
-        user(_id: ID!): User
+        user(username: String!): User
         users: [User]
         exchanges: [Exchange]
         exchange: Exchange
@@ -39,7 +39,7 @@ const typeDefs = gql
     }
 
     type Mutation {
-        addWishItem(item: String!): Wish
+        addWishItem(item: String!): User
         addUser(username: String!, email: String!, password: String!): Auth
         deleteUser(userId: ID!): User
         loginUser(username: String!, password: String!): Auth
@@ -47,6 +47,7 @@ const typeDefs = gql
         deleteExchange(exchangeId: ID!): Exchange
         joinExchange(roomName: String!, passphrase: String!): Exchange
         removeFromExchange(exchangeId: ID!, userId: ID!): Exchange
+        removeWish(wish: String!): User
     }
     
     

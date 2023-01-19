@@ -6,7 +6,7 @@
 :root {
   --primary-color: #00171f;
   --secondary-color: #00a7e1;
-  --tertiary-color: #ffffff,
+  --tertiary-color: #860000,
 }
 
 
@@ -16,6 +16,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  overflow: auto;
 }
 
 * {
@@ -30,10 +31,110 @@ form {
 
 }
 
+.title-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.create-link {
+  color: #09ff00;
+  text-decoration: underline;
+}
+
 .nav-dropdown {
-  display: block;
-  float: right;
-  margin-right: 15px;
+  position: fixed;
+  top: 25px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.dropdown-menu {
+  border: #860000;
+  border-width: 3px;
+}
+
+.home-container {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 50px;
+}
+
+.home-image {
+  width: 200px;
+  height: auto;
+}
+
+.home-image-container {
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-card {
+  display: inline-flex;
+  align-items: center;
+  min-height: 150px;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  margin: 45px;
+  background-color: #860000;
+  color: white;
+  border-radius: 15px;
+  border-style: double;
+  border-color: antiquewhite;
+  padding: 20px;
+}
+
+.login-card {
+  display: inline-flex;
+  align-items: center;
+  min-height: 150px;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  margin: 45px;
+  background-color: #860000;
+  color: white;
+  border-radius: 15px;
+  border-style: double;
+  border-color: antiquewhite;
+  padding: 20px;
+}
+
+.home-card a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+.home-card a:hover {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.login-card a:hover {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.home-box {
+  display: flex;
+  padding: 15px;
+  margin-top: 25px;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: 30%;
 }
 
 .nav-active {
@@ -63,6 +164,7 @@ form {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 
 
 }
@@ -70,16 +172,15 @@ form {
 .center-form {
   display: flex;
   align-items: center;
+  margin: 25px;
   justify-content: center;
-  background: transparent;
 }
 
 .center-box {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80vh;
-  width: 100%;
+  height: 50vh;
 }
 
 
@@ -94,11 +195,12 @@ form {
   display: flex;
   position: fixed;
   padding: 10px 10px 0px 10px;
-  background-color: var(--secondary-color);
+  background-color: #860000;
   bottom: 0;
+  color: white;
   width: 100%;
   /* Height of the footer*/
-  height: 60px;
+  height: 40px;
   /* flex-direction: column; */
   align-items: center;
   justify-content: center;
@@ -107,28 +209,56 @@ form {
   border-bottom: 0px;
   border-left: 0px;
   border-right: 0px;
-  border-radius: 10px;
+}
+
+.footer-text {
+  font-size: 1em;
+  font-weight: bold;
+
+}
+
+.github-link {
+  color: white;
 }
 
 .profile-page {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* background-color: white; */
+  height: min-content;
+
+}
+
+.profilePageUser {
+  background-color: #860000;
+  width: 50%;
+  height: auto;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px 40px 10px;
+  display: flex;
+  justify-content: center;
+  color: white;
+  border-width: 15px;
+
 }
 
 .profile-page h1 {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-style: italic;
 }
 
-.profile-page p {
+/* .profile-page p {
   font-size: 16px;
   margin-bottom: 10px;
-}
+} */
 
-.profile-page button {
+/* .profile-page button {
   align-items: center;
-  background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+  background-image: linear-gradient(144deg, #FF1414, #74D680 50%, #C6EFFF);
   border: 0;
   border-radius: 8px;
   box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
@@ -141,7 +271,7 @@ form {
   min-width: auto;
   padding: 8px 10px;
   margin-top: 20px
-}
+} */
 
 .profileSearchBar {
   display: flex;
@@ -161,8 +291,9 @@ form {
   padding: 10px;
   border: 1px solid white;
   font-size: 16px;
-  border-top-right-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
+  /* border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem; */
+  border-radius: 8px;
 }
 
 .profileSearchBar button {
@@ -173,28 +304,41 @@ form {
   color: white;
   font-size: 16px;
   cursor: pointer;
+  margin-top: -3px;
+  margin-left: -90px
 }
 
 .wishlist {
+  display: flex;
+  flex-flow: column nowrap;
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin: 2px;
+  padding: 2px;
   color: red;
+}
+
+.old-wishes {
+  background-color: transparent;
+  display: flex;
+
 }
 
 .wishlist li {
   display: flex;
-  align-items: center;
   margin: 10px 0;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   color: red;
+  align-items: center;
+  justify-content: space-between;
+  align-content: center;
+  flex-direction: row;
 }
 
 .wishlist button {
   align-items: center;
-  background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+  background-image: linear-gradient(144deg, #FF1414, #74D680 50%, #C6EFFF);
   border: 0;
   border-radius: 8px;
   box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
@@ -210,15 +354,15 @@ form {
 }
 
 .nav {
-  display: flex;
+  display: fixed;
   justify-content: center;
   float: right;
-  list-style: none;
+  width: 100%;
 }
 
 .custom-nav {
   display: block;
-  height: 60px;
+  height: 100px;
   border-style: solid;
   border-top: 0px;
   border-left: 0px;
@@ -226,18 +370,18 @@ form {
   border-color: antiquewhite;
   background-color: var(--primary-color);
   /* border-radius: 10px; */
-  width: 100%;
+  width: auto;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
 .btn-one {
   align-items: center;
-  background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
-  border: 0;
+  background-image: linear-gradient(144deg, #FF1414, #74D680 50%, #C6EFFF);
+  color: black;
+  font-weight: 200;
   border-radius: 8px;
   box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-  color: #FFFFFF;
   display: flex;
   float: right;
   font-size: 15px;
@@ -248,17 +392,68 @@ form {
   margin-top: 20px
 }
 
-.exchangeContainers {
-  margin: auto;
-  width: 50%;
-  padding: 10px;
-  background-color: rgb(252, 143, 0);
+.card-break {
+  color: white;
+  border-style: solid;
+  border-width: 3px;
+  border: #FFFFFF;
+}
 
+.exchangeContainers {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  width: auto;
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: white;
   border-radius: 15px;
+  top: 50%;
+  left: 50%;
+  border-style: double;
+  border-color: antiquewhite;
+}
+
+.member-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.exchangeContainersTitle {
+  margin: auto;
+  padding: 10px;
+  background-color: antiquewhite;
+  color: black;
+  font-style: bold;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  width: auto;
+}
+
+.exchangeContainersTextArea {
+  padding: 10px;
+  margin: auto;
+  background-color: #C6EFFF;
+  justify-content: space-around;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-around;
+  align-items: center;
+}
+
+.card {
+  background-color: #1874CD;
 }
 
 .card-body {
-  background-color: black;
+  background-color: antiquewhite;
 }
 
 .gradiant {
@@ -267,9 +462,12 @@ form {
 
 .GifteeMemberCard {
   width: auto;
-  display: flex;
+  display: block;
   justify-content: center;
+}
 
+.giftee-btn {
+  min-width: 150px;
 }
 
 .GifteeMembers {
@@ -277,7 +475,92 @@ form {
   height: auto;
   padding: 10px;
   margin: 10px;
-  background-color: White;
+  background-color: #860000;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
 
+}
+
+.custom-card {
+  background-color: antiquewhite;
+  color: black;
+  display: flex;
+  justify-content: center;
+}
+
+/* ul {
+  list-style: none;
+
+} */
+
+.exchangeRoomName {
+  display: flex;
+  justify-content: center;
+}
+
+.ExchangeArea {
+
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+
+/* .renderPageDiv {
+  display: flex;
+  justify-content: center;
+  height: 1000px;
+} */
+
+
+.exhangePageTitle {
+  margin: 15px;
+  padding: 10px;
+  left: 50%;
+  background-color: antiquewhite;
+  color: black;
+  font-style: bold;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  width: 400px;
+  border: var(--tertiary-color);
+  border-width: 15px;
+  border-style: double;
+}
+
+.exhangePageTitleDiv {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+
+}
+
+.snow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.wishListCotainer {
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+}
+
+.btn {
+  margin: 10px;
+  padding: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .footer-text {
+    font-size: 10px;
+    text-align: center;
+  }
 }

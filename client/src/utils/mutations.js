@@ -38,54 +38,47 @@ mutation loginUser(
 `;
 
 export const ADD_EXCHANGE = gql`
-    mutation addExchange(
-        $roomName: String!
-        $passphrase: String!
-        ) {
-        addExchange(
-            roomName: $roomName
-            passphrase: $passphrase
-            ) {
-                _id
-                passphrase
-                roomName
-                users {
-                    _id
-                    username
-            }
-        }
-      }
-`;
-
-export const JOIN_EXCHANGE = gql`
-    mutation joinExchange(
-        $roomName: String!
-        $passphrase: String!
-        ) {
-        joinExchange(
-            roomName: $roomName
-            passphrase: $passphrase
-            ) {
-                _id
-                passphrase
-                roomName
-                users {
-                    _id
-                    username
-            }
+    mutation Mutation($roomName: String!, $passphrase: String!) {
+        addExchange(roomName: $roomName, passphrase: $passphrase) {
+        _id
+        creatorID
+        passphrase
+        roomName
+        users
         }
     }
 `;
 
+export const JOIN_EXCHANGE = gql`
+    mutation Mutation($roomName: String!, $passphrase: String!) {
+        joinExchange(roomName: $roomName, passphrase: $passphrase) {
+        _id
+        creatorID
+        passphrase
+        roomName
+        users
+        }
+    }
+`;
+
+
+
 export const ADD_WISH = gql`
-    mutation addWishItem(
-        $item: String!
-        ) {
-        addWishItem(
-            item: $item
-            ) {
-                _id
-                item
-            }
-      }
+mutation addWishItem($item: String!) {
+    addWishItem(item: $item) {
+      _id
+      username
+      wishes
+    }
+  }
+`;
+
+export const REMOVE_WISH = gql`
+  mutation Mutation($wish: String!) {
+    removeWish(wish: $wish) {
+      email
+      username
+      wishes
+    }
+  }
 `;

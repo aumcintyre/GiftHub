@@ -1,70 +1,60 @@
 import React, { useState } from 'react';
 import { useMutation } from "@apollo/client";
 import { ADD_WISH } from '../utils/mutations';
+// import SavedWishes from './SavedWishes'
 
-class CreateWishlist extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            inputValue: '',
-            items: [],
-        };
-    }
+function CreateWishlist() {
+    const [addWishItem] = useMutation(ADD_WISH);
+    const [inputValue, setInputValue] = useState("");
+    const [items, setItems] = useState([]);
 
-    handleInputChange = (event) => {
-        this.setState({ inputValue: event.target.value });
-    }
-    
-    
-    // const [addWish, { error }] = useMutation(ADD_WISH);
-    handleButtonClick = (e) => {
+
+
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+    };
+
+
+    const handleButtonClick = async (e) => {
         e.preventDefault();
-        
-        const newWish = [...this.state.items,
-        this.state.inputValue];
-        this.setState({ items: newWish, inputValue: '' });
-        // addWish({ variables: { item: this.state.inputValue}})
-        // try {
-        //     console.log("TRYING to add gift!!!!!");
-        //     const { data } = addWish({
-        //         variables: { item: this.state.inputValue }
-        //     });
-        //     console.log('data::::', data)
+        try {
+            setInputValue("")
+            addWishItem({ variables: { item: inputValue } })
+            const newItems = items.splice(0);
+            newItems.push(inputValue)
+            setItems(newItems);
+            // consolelog(newItems);
+        } catch (err) {
+            console.error(err);
 
-        // } catch (err) {
-        //     console.error(err);
-        //     setShowAlert(true);
-        // }
+        }
+
     }
-
-    handleRemoveClick = (index) => {
-        const newWishes = [...this.state.items]
+    const handleRemoveClick = (index) => {
+        const newWishes = [...items]
         newWishes.splice(index, 1)
-        this.setState({ items: newWishes })
+        setItems(newWishes)
     }
 
 
+    return (
+        <>
+            <div className='wishlist'>
+                <input value={inputValue} placeholder="Add to your wishlist" onChange={handleInputChange} />
+                <button className='add-wish-btn' onClick={handleButtonClick}>Add Wish</button>
+                {/* <ul className='wishlist-items'>
+                    {items.map((item, index) => (
+                        <li key={item}>{item}
+                            <button onClick={() =>
+                                handleRemoveClick(index)}>Delete</button>
+                        </li>
+                    ))}
+                </ul> */}
+            </div>
+            {/* <SavedWishes items={items} /> */}
+        </>
 
-    render() {
-        return (
-            <>
-                <div className='wishlist'>
-                    <input value={this.state.inputValue} onChange=
-                        {this.handleInputChange} />
-
-                    <button onClick={this.handleButtonClick}>Add Wish </button>
-                    <ul className='wishlist-items'>
-                        {this.state.items.map((item, index) => (
-                            <li key={item}>{item}
-                                <button onClick={() => 
-            this.handleRemoveClick(index)}>DESTROY</button>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </>
-
-        );
-    }
+    )
 }
+
 export default CreateWishlist;
